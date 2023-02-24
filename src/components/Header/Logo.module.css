@@ -1,0 +1,16 @@
+.logo {
+  display: flex;
+  gap: 1rem;
+  place-items: center;
+}
+
+.logo__name {
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.logo_tagline {
+  font-size: 1.5rem;
+  font-weight: 200;
+}

@@ -1,0 +1,9 @@
+input {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  border: 1px solid #1a1a1a;
+}
+
+button {
+  height: 40px;
+}
