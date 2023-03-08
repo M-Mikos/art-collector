@@ -4,18 +4,15 @@ const favSlice = createSlice({
   name: "favs",
   initialState: { artworks: [191, 90910, 36115] },
   reducers: {
-    repalceFav(state, action) {
+    repalce(state, action) {
       state.artworks = action.payload.artworks;
     },
-    addArtworkToFav(state, action) {
-      const newArtwork = action.payload;
-      state.artworks.push({
-        id: newArtwork.id,
-      });
-    },
-    removeArtworkFromFav(state, action) {
-      const id = action.payload;
-      state.artworks = state.artworks.filter((artworks) => artworks.id !== id);
+    toggle(state, action) {
+      const artworkId = action.payload;
+
+      state.artworks.includes(artworkId)
+        ? (state.artworks = state.artworks.filter((id) => id !== artworkId))
+        : state.artworks.push(artworkId);
     },
   },
 });

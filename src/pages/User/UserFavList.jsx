@@ -3,7 +3,6 @@ import ArtworkList from "../../components/ArtworkList";
 
 function UserFavList() {
   const items = useLoaderData();
-  console.log(items);
   return (
     <>
       <ArtworkList items={items} />

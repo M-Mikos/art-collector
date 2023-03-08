@@ -29,7 +29,7 @@ function Artwork(props) {
         <Display imgId={imgId} altText={altText} />
         <div className="">
           <Title title={title} date={date} artist={artist} />
-          <Actions />
+          <Actions id={id} />
         </div>
 
         <Details
