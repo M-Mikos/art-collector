@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import genID from "../helpers/genID";
 
 const collectionsSlice = createSlice({
   name: "collections",
@@ -26,8 +27,24 @@ const collectionsSlice = createSlice({
   },
   reducers: {
     repalce(state, action) {},
-    create(state, action) {},
-    edit(state, action) {},
+    create(state, action) {
+      const { title, description } = action.payload;
+      const newCollection = {
+        id: title + genID(),
+        title,
+        description,
+        artworks: [],
+      };
+      state.collections.push(newCollection);
+    },
+    edit(state, action) {
+      const { collectionId, title, description } = action.payload;
+      const editedCollection = state.collections.filter(
+        (collection) => collection.id === collectionId
+      );
+      editedCollection.title = title;
+      editedCollection.description = description;
+    },
     remove(state, action) {
       const collectionId = action.payload;
       state.collections = state.collections.filter(

@@ -2,10 +2,10 @@ import { useLoaderData } from "react-router-dom";
 import ArtworkList from "../components/ArtworkList/Index";
 
 function Home() {
-  const items = useLoaderData();
+  const data = useLoaderData();
   return (
     <>
-      <ArtworkList items={items} />
+      <ArtworkList data={data} />
     </>
   );
 }

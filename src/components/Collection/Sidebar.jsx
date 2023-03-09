@@ -3,9 +3,9 @@ import Actions from "./Actions";
 function Sidebar(props) {
   return (
     <>
-      <h1>{props.data.title}</h1>
-      <p>{props.data.id}</p>
-      <p>{props.data.description}</p>
+      <h1>{props.collection.title}</h1>
+      <p>ID: {props.collection.id}</p>
+      <p>Description: {props.collection.description}</p>
       <Actions />
     </>
   );

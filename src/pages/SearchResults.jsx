@@ -2,11 +2,11 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import ArtworkList from "../components/ArtworkList/Index";
 
 function SearchResults() {
-  const items = useLoaderData();
+  const data = useLoaderData();
 
   return (
     <>
-      <ArtworkList items={items} />
+      <ArtworkList data={data} />
       {/* <Outlet /> */}
     </>
   );

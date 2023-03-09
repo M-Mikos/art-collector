@@ -5,15 +5,15 @@ import Collection from "../../components/Collection/Index";
 
 function CollectionDetails() {
   const { collectionId } = useParams();
-  const data = useSelector((state) =>
+  const collection = useSelector((state) =>
     state.collections.collections.find(
       (collection) => collection.id === collectionId
     )
   );
-  const items = useLoaderData();
+  const data = useLoaderData();
   return (
     <>
-      <Collection items={items} data={data} />
+      <Collection data={data} collection={collection} />
     </>
   );
 }

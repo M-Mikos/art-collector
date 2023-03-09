@@ -2,22 +2,24 @@ import ArtworkThumbnail from "./ArtworkThumbnail";
 import { API_URL, THUMBNAIL_PROPS } from "../../../config";
 
 import classes from "./Index.module.css";
-import { json, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import store from "../../store";
 
 function ArtworkList(props) {
-  // const ids = useSelector((state) => state.favs.artworks);
-  // console.log(ids);
+  console.log("artowrk list props:", props);
   return (
-    <ul className={classes["items-grid"]}>
-      {props.items.data.map((artwork) => (
-        <li key={artwork.id} className={classes.item}>
-          <Link to={`/${artwork.id}`} state={location.pathname}>
-            <ArtworkThumbnail data={artwork} />
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className={classes["items-grid"]}>
+        {props.data.items.data.map((artwork) => (
+          <li key={artwork.id} className={classes.item}>
+            <Link to={`/${artwork.id}`} state={location.pathname}>
+              <ArtworkThumbnail data={artwork} />
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <p>{props.data.message}</p>
+    </>
   );
 }
 
@@ -32,10 +34,13 @@ export async function loader({ request, params }) {
     const responseList = await fetch(`${API_URL}${path}`);
 
     if (!responseList.ok) {
-      return json({ message: "Couldn't fetch data" }, { status: 500 });
+      return { items: { data: [] }, message: "Couldn't fetch data" };
     }
 
     const list = await responseList.json();
+    if (list.length === 0) {
+      return { items: [], message: "No results" };
+    }
     idList = list.data.map((item) => item.id).join(",");
   }
 
@@ -50,6 +55,11 @@ export async function loader({ request, params }) {
       .collections.collections.find(
         (collection) => collection.id === params.collectionId
       ).artworks;
+
+    if (list.length === 0) {
+      return { items: { data: [] }, message: "Empty list" };
+    }
+
     idList = list.join(",");
   }
 
@@ -58,9 +68,9 @@ export async function loader({ request, params }) {
   );
 
   if (!responseItems.ok) {
-    return json({ message: "Couldn't fetch data" }, { status: 500 });
+    return { items: { data: [] }, message: "Couldn't fetch data" };
   }
   const items = await responseItems.json();
 
-  return items;
+  return { items, message: "" };
 }

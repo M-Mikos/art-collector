@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { favActions } from "../../store/fav-slice";
 import { collectionsActions } from "../../store/collections-slice";
-import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 
 function Actions(props) {
   const dispatch = useDispatch();
   const favList = useSelector((state) => state.fav.artworks);
   const collections = useSelector((state) => state.collections.collections);
-  const { artworkId } = useParams();
   const collectionRef = useRef("");
+
+  // set initial button state for default first selection option
   const [isInCollection, setIsInCollection] = useState(
-    collections[0].artworks.includes(+artworkId)
+    collections[0].artworks.includes(props.id)
   );
 
   const toggleFavHadler = () => {
@@ -22,19 +22,15 @@ function Actions(props) {
     return favList.includes(props.id);
   };
 
+  const isInCollectionCheck = (collectionId) => {
+    return collections
+      .find((item) => item.id === collectionId)
+      .artworks.includes(props.id);
+  };
+
   const changeHandler = () => {
     const collectionId = collectionRef.current.value;
-    console.log(collectionId);
-
-    if (
-      collections
-        .find((item) => item.id === collectionId)
-        .artworks.includes(+artworkId)
-    ) {
-      setIsInCollection(true);
-    } else {
-      setIsInCollection(false);
-    }
+    setIsInCollection(isInCollectionCheck(collectionId));
   };
 
   const submitHandler = (event) => {
@@ -44,9 +40,11 @@ function Actions(props) {
     dispatch(
       collectionsActions.toggleArtwork({
         collectionId,
-        artworkId,
+        artworkId: props.id,
       })
     );
+
+    setIsInCollection((prevState) => !prevState);
   };
 
   return (
