@@ -8,8 +8,10 @@ import UserCollectionList from "../pages/user/UserCollectionsList";
 import EditCollection from "../pages/user/EditCollection";
 import CollectionDetails from "../pages/user/CollectionDetails";
 import ArtworkPage from "../pages/ArtworkPage";
+import { loader as searchLoader } from "../pages/SearchResults";
+import { loader as favLoader } from "../pages/User/UserFavList";
+import { loader as collectionDetailsLoader } from "../pages/user/CollectionDetails";
 import { loader as artworkLoader } from "../components/Artwork/Index";
-import { loader as artworksListLoader } from "../components/ArtworkList";
 import SearchResults from "../pages/SearchResults";
 
 const router = createBrowserRouter([
@@ -21,7 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: artworksListLoader,
+        loader: searchLoader,
       },
 
       {
@@ -33,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchResults />,
-        loader: artworksListLoader,
+        loader: searchLoader,
       },
 
       {
@@ -43,7 +45,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <UserFavList />,
-            loader: artworksListLoader,
+            loader: favLoader,
           },
           {
             path: "collections",
@@ -57,7 +59,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <CollectionDetails />,
-            loader: artworksListLoader,
+            loader: collectionDetailsLoader,
           },
           {
             path: "edit",

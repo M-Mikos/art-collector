@@ -1,30 +1,33 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import getSearchPath from "../helpers/getSearchPath";
+import getArtworksById from "../helpers/getArtworksById";
 import ArtworkList from "../components/ArtworkList/Index";
+import { API_URL } from "../../config";
+import fetchData from "../helpers/fetchData";
 
 function SearchResults() {
   const data = useLoaderData();
-
+  const items = data.items;
+  const message = data.message;
   return (
     <>
-      <ArtworkList data={data} />
-      {/* <Outlet /> */}
+      <ArtworkList items={items} message={message} />
     </>
   );
 }
 
 export default SearchResults;
 
-// export async function loader({ request }) {
-//   const url = new URL(request.url);
-//   const searchTerm = url.searchParams.get("q");
+export async function loader({ request }) {
+  try {
+    const data = await fetchData(`${API_URL}${getSearchPath(request)}`);
 
-//   console.log(
-//     "loader na stronie search results:",
-//     "- URL",
-//     url,
-//     "- Search Term",
-//     searchTerm
-//   );
+    if (data.data.length === 0) {
+      throw new Error("No results.");
+    }
 
-//   return "tu są wyniki wyszukiwania";
-// }
+    return getArtworksById(data.data.map((item) => item.id));
+  } catch (error) {
+    return { items: [], message: error.message };
+  }
+}

@@ -3,9 +3,11 @@ import ArtworkList from "../components/ArtworkList/Index";
 
 function Home() {
   const data = useLoaderData();
+  const items = data.items;
+  const message = data.message;
   return (
     <>
-      <ArtworkList data={data} />
+      <ArtworkList items={items} message={message} />
     </>
   );
 }
