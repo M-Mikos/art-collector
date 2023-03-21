@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { collectionsActions } from "../../store/collections-slice";
 import classes from "./AddCollection.module.css";
 
-function AddCollection() {
+function AddCollection(props) {
   const dispatch = useDispatch();
   const titleRef = useRef();
   const descriptionRef = useRef();
@@ -11,21 +11,35 @@ function AddCollection() {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    dispatch(
-      collectionsActions.create({
-        title: titleRef.current.value,
-        description: descriptionRef.current.value,
-      })
-    );
-
-    if (1 === 0) {
+    if (props.mode === "Add") {
       dispatch(
         collectionsActions.create({
           title: titleRef.current.value,
           description: descriptionRef.current.value,
         })
       );
+      props.showNotification("New collection added");
     }
+
+    if (props.mode === "Edit") {
+      console.log(
+        "edit",
+        props.collectionId,
+        titleRef.current.value,
+        descriptionRef.current.value
+      );
+      dispatch(
+        collectionsActions.edit({
+          collectionId: props.collectionId,
+          title: titleRef.current.value,
+          description: descriptionRef.current.value,
+        })
+      );
+      props.showNotification("Collection updated");
+    }
+
+    // Close
+    props.close();
 
     titleRef.current.value = "";
     descriptionRef.current.value = "";
@@ -33,11 +47,20 @@ function AddCollection() {
 
   return (
     <>
-      <h2>Create new collection</h2>
+      <h2>
+        {props.mode === "Add" ? "Create new collection" : "Edit collection"}
+      </h2>
       <form onSubmit={submitHandler}>
         <div>
           <label htmlFor="title">Title</label>
-          <input id="title" type="text" name="title" ref={titleRef} required />
+          <input
+            id="title"
+            type="text"
+            name="title"
+            ref={titleRef}
+            defaultValue={props.currentTitle}
+            required
+          />
         </div>
         <div>
           <label htmlFor="description">Description</label>
@@ -46,10 +69,11 @@ function AddCollection() {
             type="textarea"
             name="description"
             ref={descriptionRef}
+            defaultValue={props.currentDescription}
           />
         </div>
-        <button type="submit">Add</button>
-        <button>Cancel</button>
+        <button type="submit">Submit</button>
+        <button onClick={props.close}>Cancel</button>
       </form>
     </>
   );

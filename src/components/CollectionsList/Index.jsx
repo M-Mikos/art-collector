@@ -7,10 +7,12 @@ import { Link } from "react-router-dom";
 import classes from "./Index.module.css";
 import { useState } from "react";
 import AddCollection from "./AddCollection";
+import useNotification from "../../hooks/useNotification";
 
 function CollectionsList() {
   const collections = useSelector((state) => state.collections.collections);
   const [isModal, setIsModal] = useState(false);
+  const [notification, isNotification, showNotification] = useNotification();
 
   const openModal = () => {
     setIsModal(true);
@@ -25,7 +27,11 @@ function CollectionsList() {
       <button onClick={openModal}>Dodaj kolekcję</button>
       {isModal && (
         <Modal close={closeModal}>
-          <AddCollection />
+          <AddCollection
+            mode={"Add"}
+            close={closeModal}
+            showNotification={showNotification}
+          />
         </Modal>
       )}
       <ul className={classes["items-grid"]}>
@@ -39,6 +45,7 @@ function CollectionsList() {
           </li>
         ))}
       </ul>
+      {isNotification && notification}
     </>
   );
 }

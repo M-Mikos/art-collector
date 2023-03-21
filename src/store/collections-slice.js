@@ -42,8 +42,8 @@ const collectionsSlice = createSlice({
       const editedCollection = state.collections.filter(
         (collection) => collection.id === collectionId
       );
-      editedCollection.title = title;
-      editedCollection.description = description;
+      editedCollection[0].title = title;
+      editedCollection[0].description = description;
     },
     remove(state, action) {
       const collectionId = action.payload;

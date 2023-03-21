@@ -2,40 +2,53 @@ import { useDispatch, useSelector } from "react-redux";
 import { favActions } from "../../store/fav-slice";
 import { collectionsActions } from "../../store/collections-slice";
 import { useRef, useState } from "react";
+import useNotification from "../../hooks/useNotification";
 
 function Actions(props) {
   const dispatch = useDispatch();
   const favList = useSelector((state) => state.fav.artworks);
   const collections = useSelector((state) => state.collections.collections);
   const collectionRef = useRef("");
+  const [notification, isNotification, showNotification] = useNotification();
 
   // set initial button state for default first selection option
   const [isInCollection, setIsInCollection] = useState(
     collections[0].artworks.includes(props.id)
   );
 
-  const toggleFavHadler = () => {
-    dispatch(favActions.toggle(props.id));
-  };
-
   const isFav = () => {
     return favList.includes(props.id);
   };
 
-  const isInCollectionCheck = (collectionId) => {
+  const checkIfIsInCollection = (collectionId) => {
     return collections
       .find((item) => item.id === collectionId)
       .artworks.includes(props.id);
   };
 
-  const changeHandler = () => {
-    const collectionId = collectionRef.current.value;
-    setIsInCollection(isInCollectionCheck(collectionId));
+  const toggleFavHadler = () => {
+    // Notification
+
+    isFav()
+      ? showNotification("Removed from favorites")
+      : showNotification("Added to favorites");
+
+    dispatch(favActions.toggle(props.id));
   };
 
-  const submitHandler = (event) => {
+  const changeHandler = () => {
+    const collectionId = collectionRef.current.value;
+    setIsInCollection(checkIfIsInCollection(collectionId));
+  };
+
+  const toggleCollectionHadler = (event) => {
     event.preventDefault();
     const collectionId = collectionRef.current.value;
+
+    // Notification
+    checkIfIsInCollection(collectionId)
+      ? showNotification("Removed from collection")
+      : showNotification("Added to collection");
 
     dispatch(
       collectionsActions.toggleArtwork({
@@ -52,7 +65,7 @@ function Actions(props) {
       <button onClick={toggleFavHadler}>
         {isFav() ? "Remove from fav" : "Add to fav"}
       </button>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={toggleCollectionHadler}>
         <label htmlFor="collection">Collection:</label>
         <select
           id="collection"
@@ -70,6 +83,7 @@ function Actions(props) {
           {isInCollection ? "Remove from collection" : "Add to collection"}
         </button>
       </form>
+      {isNotification && notification}
     </>
   );
 }

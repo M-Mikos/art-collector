@@ -2,6 +2,7 @@ import { ARTWORKS_URL, IIIF_URL } from "../../../config";
 
 function Details(props) {
   const data = Object.entries(props.data);
+  console.log("data:", data);
   return (
     <>
       <div>

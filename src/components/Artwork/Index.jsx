@@ -4,9 +4,10 @@ import Back from "./Back";
 import Details from "./Details";
 import Display from "./Display";
 import Title from "./Title";
+import Actions from "./Actions";
+import Terms from "./Terms";
 
 import classes from "./Index.module.css";
-import Actions from "./Actions";
 
 function Artwork(props) {
   const {
@@ -20,7 +21,10 @@ function Artwork(props) {
     artist_title: artist,
     style_title: style,
     date_display: date,
+    term_titles: terms,
   } = props.data.data;
+
+  console.log(props.data.data);
   return (
     <>
       <div className={classes.background}></div>
@@ -46,6 +50,7 @@ function Artwork(props) {
             id,
           }}
         />
+        <Terms terms={terms} />
       </div>
     </>
   );

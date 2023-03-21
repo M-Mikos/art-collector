@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import useLoadMore from "../../hooks/useLoadMore";
 import ArtworkThumbnail from "./ArtworkThumbnail";
 
@@ -17,9 +16,7 @@ function ArtworkList(props) {
       <ul className={classes["items-grid"]}>
         {items.map((artwork) => (
           <li key={artwork.id} className={classes.item}>
-            <Link to={`/${artwork.id}`} state={location.pathname}>
-              <ArtworkThumbnail data={artwork} />
-            </Link>
+            <ArtworkThumbnail data={artwork} />
           </li>
         ))}
       </ul>
