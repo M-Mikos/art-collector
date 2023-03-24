@@ -3,6 +3,8 @@ import { favActions } from "../../store/fav-slice";
 import { collectionsActions } from "../../store/collections-slice";
 import { useRef, useState } from "react";
 import useNotification from "../../hooks/useNotification";
+import AddCollection from "../CollectionsList/AddCollection";
+import Modal from "../UI/Modal";
 
 function Actions(props) {
   const dispatch = useDispatch();
@@ -10,11 +12,20 @@ function Actions(props) {
   const collections = useSelector((state) => state.collections.collections);
   const collectionRef = useRef("");
   const [notification, isNotification, showNotification] = useNotification();
+  const [isModal, setIsModal] = useState(false);
 
   // set initial button state for default first selection option
-  const [isInCollection, setIsInCollection] = useState(
-    collections[0].artworks.includes(props.id)
-  );
+  const [isInCollection, setIsInCollection] = useState(() => {
+    collections[0] ? collections[0].artworks.includes(props.id) : null;
+  });
+
+  const openModal = () => {
+    setIsModal(true);
+  };
+
+  const closeModal = () => {
+    setIsModal(false);
+  };
 
   const isFav = () => {
     return favList.includes(props.id);
@@ -60,6 +71,41 @@ function Actions(props) {
     setIsInCollection((prevState) => !prevState);
   };
 
+  const selectCollection = (
+    <>
+      <select
+        id="collection"
+        name="collection"
+        ref={collectionRef}
+        onChange={changeHandler}
+      >
+        {collections.map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.title}
+          </option>
+        ))}
+      </select>
+      <button type="submit">
+        {isInCollection ? "Remove from collection" : "Add to collection"}
+      </button>{" "}
+    </>
+  );
+
+  const addCollection = (
+    <>
+      <button onClick={openModal}>Create Collection</button>
+      {isModal && (
+        <Modal close={closeModal}>
+          <AddCollection
+            mode={"Add"}
+            close={closeModal}
+            showNotification={showNotification}
+          />
+        </Modal>
+      )}
+    </>
+  );
+
   return (
     <>
       <button onClick={toggleFavHadler}>
@@ -67,21 +113,7 @@ function Actions(props) {
       </button>
       <form onSubmit={toggleCollectionHadler}>
         <label htmlFor="collection">Collection:</label>
-        <select
-          id="collection"
-          name="collection"
-          ref={collectionRef}
-          onChange={changeHandler}
-        >
-          {collections.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.title}
-            </option>
-          ))}
-        </select>
-        <button type="submit">
-          {isInCollection ? "Remove from collection" : "Add to collection"}
-        </button>
+        {collections.length !== 0 ? selectCollection : addCollection}
       </form>
       {isNotification && notification}
     </>

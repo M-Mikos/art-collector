@@ -5,9 +5,14 @@ function Home() {
   const data = useLoaderData();
   const items = data.items;
   const message = data.message;
+  const hasMultiplePages = data.hasMultiplePages;
   return (
     <>
-      <ArtworkList items={items} message={message} />
+      <ArtworkList
+        items={items}
+        message={message}
+        hasMultiplePages={hasMultiplePages}
+      />
     </>
   );
 }

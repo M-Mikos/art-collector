@@ -8,6 +8,7 @@ import Actions from "./Actions";
 import Terms from "./Terms";
 
 import classes from "./Index.module.css";
+import { useLocation } from "react-router-dom";
 
 function Artwork(props) {
   const {
@@ -24,12 +25,13 @@ function Artwork(props) {
     term_titles: terms,
   } = props.data.data;
 
-  console.log(props.data.data);
+  let { state } = useLocation();
+
   return (
     <>
       <div className={classes.background}></div>
       <div className={classes.content}>
-        <Back />
+        {state && <Back path={state} />}
         <Display imgId={imgId} altText={altText} />
         <div className="">
           <Title title={title} date={date} artist={artist} />

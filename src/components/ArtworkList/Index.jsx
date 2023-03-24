@@ -1,16 +1,31 @@
-import useLoadMore from "../../hooks/useLoadMore";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import detectHittingBottom from "../../helpers/detectHittingBottom";
+import useLoadMoreSearchResults from "../../hooks/useLoadMoreSearchResults";
 import ArtworkThumbnail from "./ArtworkThumbnail";
 
 import classes from "./Index.module.css";
 
 function ArtworkList(props) {
-  const [items, loadItems] = useLoadMore(props.items);
+  const [searchParams] = useSearchParams();
+  const [items, loadItems, nextPageNumber] = useLoadMoreSearchResults(
+    props.items,
+    searchParams
+  );
 
-  const loadHandler = () => {
-    loadItems();
+  // Infinite scrool
+
+  const onScroll = () => {
+    if (detectHittingBottom()) {
+      loadItems(nextPageNumber);
+      window.removeEventListener("scroll", onScroll);
+    }
   };
 
-  console.log("inside artwork", items);
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+  }, [items]);
+
   return (
     <>
       <ul className={classes["items-grid"]}>
@@ -20,7 +35,10 @@ function ArtworkList(props) {
           </li>
         ))}
       </ul>
-      <button onClick={loadHandler}>Load more</button>
+      {/* {nextPageNumber && props.hasMultiplePages && (
+        <button onClick={loadItemsHandler}>Load more</button>
+      )} */}
+      {!props.hasMultiplePages && !props.message && <p>No more results.</p>}
       {props.message && <p>{props.message}</p>}
     </>
   );

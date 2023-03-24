@@ -8,7 +8,6 @@ import Modal from "../UI/Modal";
 
 function Actions(props) {
   const dispatch = useDispatch();
-  const { collectionId } = useParams();
   const navigate = useNavigate();
   const [notification, isNotification, showNotification] = useNotification();
   const [isModal, setIsModal] = useState(false);
@@ -22,9 +21,8 @@ function Actions(props) {
   };
 
   const deleteHandler = () => {
-    dispatch(collectionsActions.remove(collectionId));
-    navigate("/my-account/collections");
-    showNotification("Collection Deleted");
+    dispatch(collectionsActions.remove(props.collectionId));
+    navigate(`/my-account/collections?deleted=${props.collectionId}`);
   };
 
   return (

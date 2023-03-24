@@ -1,25 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { API_URL, THUMBNAIL_PROPS } from "../../config";
 import fetchData from "../helpers/fetchData";
 
-function useLoadMore(prevItems, path, page) {
+function useLoadMoreSearchResults(prevItems, searchParams) {
   const [items, setItems] = useState(prevItems);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [nextPageNumber, setNextPageNumber] = useState(2);
 
-  const loadItems = async () => {
-    const list = await fetchData(`${API_URL}?page=2`);
-    const nextPage = list.pagination.next_url;
-    console.log(list, nextPage);
+  useEffect(() => {
+    setItems(prevItems);
+  }, [prevItems]);
+
+  // console.log("hook artwork gotten list", prevItems);
+  // console.log("hook artwork list", items);
+
+  const loadItems = async (pageNumber) => {
+    const url = `${API_URL}/search?${searchParams}&page=${pageNumber}`;
+
+    // Getting items
+    const list = await fetchData(url);
     const idList = list.data.map((item) => item.id).join(",");
     const responseItems = await fetch(
       `${API_URL}?ids=${idList}&fields=${THUMBNAIL_PROPS}`
     );
     const itemsList = await responseItems.json();
     setItems((prevItems) => [...prevItems, ...itemsList.data]);
+
+    // Checking for last page
+    const totalPages = list.pagination["total_pages"];
+    console.log(pageNumber, totalPages, pageNumber !== totalPages);
+    pageNumber !== totalPages
+      ? setNextPageNumber((pageNumber) => pageNumber + 1)
+      : setNextPageNumber(null);
   };
 
-  return [items, loadItems];
+  return [items, loadItems, nextPageNumber];
   // const [data, setData] = useState(null);
   // const [error, setError] = useState(null);
   // const [loading, setLoading] = useState(false);
@@ -28,13 +42,13 @@ function useLoadMore(prevItems, path, page) {
   //   (async function () {
   //     try {
   //       setLoading(true);
-  //       const responseList = await fetch(`${API_URL}${path}`);
+  //       const responseList = await fetch(${API_URL}${path});
   //       const list = await responseList.json();
 
   //       const IDList = list.data.map((item) => item.id).join(",");
 
   //       const responseItems = await fetch(
-  //         `${API_URL}?ids=${IDList}&fields=${ARTWORK_PROPS}`
+  //         ${API_URL}?ids=${IDList}&fields=${ARTWORK_PROPS}
   //       );
   //       const items = await responseItems.json();
   //       setData(items);
@@ -48,4 +62,4 @@ function useLoadMore(prevItems, path, page) {
   // return { data, error, loading };
 }
 
-export default useLoadMore;
+export default useLoadMoreSearchResults;

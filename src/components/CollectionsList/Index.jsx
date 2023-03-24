@@ -5,14 +5,22 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import classes from "./Index.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddCollection from "./AddCollection";
 import useNotification from "../../hooks/useNotification";
+import Actions from "../Collection/Actions";
 
 function CollectionsList() {
   const collections = useSelector((state) => state.collections.collections);
   const [isModal, setIsModal] = useState(false);
   const [notification, isNotification, showNotification] = useNotification();
+
+  const deletedID = new URLSearchParams(location.search).get("deleted");
+
+  // Show notification after redirect from deleted collection
+  useEffect(() => {
+    deletedID && showNotification("Collection deleted");
+  }, [deletedID]);
 
   const openModal = () => {
     setIsModal(true);
@@ -24,7 +32,7 @@ function CollectionsList() {
 
   return (
     <>
-      <button onClick={openModal}>Dodaj kolekcję</button>
+      <button onClick={openModal}>Add Collection</button>
       {isModal && (
         <Modal close={closeModal}>
           <AddCollection
@@ -37,11 +45,16 @@ function CollectionsList() {
       <ul className={classes["items-grid"]}>
         {collections.map((collection) => (
           <li key={collection.id} className={classes.item}>
-            <Link to={collection.id}>
-              <Card>
+            <Card>
+              <Link to={collection.id}>
                 <CollectionItem data={collection} />
-              </Card>
-            </Link>
+              </Link>
+              <Actions
+                collectionId={collection.id}
+                currentTitle={collection.title}
+                currentDescription={collection.description}
+              />
+            </Card>
           </li>
         ))}
       </ul>
