@@ -2,7 +2,6 @@ import { ARTWORKS_URL, IIIF_URL } from "../../../config";
 
 function Details(props) {
   const data = Object.entries(props.data);
-  console.log("data:", data);
   return (
     <>
       <div>
@@ -29,13 +28,12 @@ function Details(props) {
           </li>
         </ul>
       </div>
-      <div>
-        {" "}
+      {/* <div>
         <img
           alt={props.altText}
           src={`${IIIF_URL}/${props.imgId}/full/400,/0/default.jpg`}
         />
-      </div>
+      </div> */}
     </>
   );
 }

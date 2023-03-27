@@ -17,6 +17,7 @@ function SearchResults() {
         items={items}
         message={message}
         hasMultiplePages={hasMultiplePages}
+        infiniteScroll={true}
       />
     </>
   );

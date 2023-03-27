@@ -5,40 +5,85 @@
 }
 
 :root {
-  font-family: Merriweather Sans, sans-serif;
-  line-height: 1.5;
+  font-family: "Mulish", sans-serif;
+  line-height: 1.35;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 62.5%;
+  overflow-x: hidden;
 
-  color-scheme: light dark;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
+  background-color: var(--neutral900);
+  color: var(--neutral50);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  /* --- COLORS --- */
+
+  --primary: #e6b44a;
+  --primaryLight: #f8eea3;
+  --primaryDark: #db7c33;
+
+  --neutral900: #1d1c18;
+  --neutral800: #4b4644;
+  --neutral700: #6b6663;
+  --neutral600: #7f7a78;
+  --neutral500: #a9a4a1;
+  --neutral400: #c7c2bf;
+  --neutral300: #eae4e1;
+  --neutral200: #f6f0ed;
+  --neutral100: #fbf5f2;
+  --neutral50: #fffaf7;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-size: 1.6rem;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* --- HEADERS --- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Nanum Myeongjo", serif;
+  font-weight: 400;
 }
 
 h1 {
-  font-size: 1.6em;
-  line-height: 1.1;
+  font-size: 4.8rem;
+}
+
+h2 {
+  font-size: 3.6rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--primary);
+}
+
+a:hover {
+  color: var(--primaryDark);
 }
 
 button {
@@ -47,27 +92,15 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--neutral900);
+  color: #fff;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--primary);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

@@ -7,14 +7,17 @@ function ArtworkThumbnail(props) {
   return (
     <article>
       <Link to={`/${props.data.id}`} state={location.pathname}>
-        <div className={classes.image}>
-          <img
-            alt=""
-            src={`${IIIF_URL}/${props.data.image_id}/full/400,/0/default.jpg`}
-          />
+        <div className={classes["image-wrap"]}>
+          <div className={classes.image}>
+            <img
+              alt=""
+              src={`${IIIF_URL}/${props.data.image_id}/full/400,/0/default.jpg`}
+            />
+          </div>
         </div>
+
         <div>
-          <h2>{props.data.title}</h2>
+          <h3>{props.data.title}</h3>
           <span>
             {props.data["artist_title"]}, {props.data["date_display"]}
           </span>

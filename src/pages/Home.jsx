@@ -12,6 +12,7 @@ function Home() {
         items={items}
         message={message}
         hasMultiplePages={hasMultiplePages}
+        infiniteScroll={true}
       />
     </>
   );

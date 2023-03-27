@@ -10,7 +10,7 @@ function UserFavList() {
   const message = data.message;
   return (
     <>
-      <ArtworkList items={items} message={message} />
+      <ArtworkList items={items} message={message} infiniteScroll={false} />
     </>
   );
 }

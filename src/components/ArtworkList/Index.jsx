@@ -23,7 +23,7 @@ function ArtworkList(props) {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll);
+    props.infiniteScroll && window.addEventListener("scroll", onScroll);
   }, [items]);
 
   return (
