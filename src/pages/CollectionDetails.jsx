@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { useLoaderData, useParams } from "react-router-dom";
-import getArtworksById from "../../helpers/getArtworksById";
-import Collection from "../../components/Collection/Index";
+import getArtworksById from "../helpers/getArtworksById";
+import Collection from "../components/Collection/Index";
 
-import store from "../../store";
+import store from "../store";
 
 function CollectionDetails() {
   const { collectionId } = useParams();

@@ -23,7 +23,9 @@ function ArtworkList(props) {
   };
 
   useEffect(() => {
-    props.infiniteScroll && window.addEventListener("scroll", onScroll);
+    props.infiniteScroll &&
+      false &&
+      window.addEventListener("scroll", onScroll);
   }, [items]);
 
   return (
@@ -35,9 +37,6 @@ function ArtworkList(props) {
           </li>
         ))}
       </ul>
-      {/* {nextPageNumber && props.hasMultiplePages && (
-        <button onClick={loadItemsHandler}>Load more</button>
-      )} */}
       {!props.hasMultiplePages && !props.message && <p>No more results.</p>}
       {props.message && <p>{props.message}</p>}
     </>

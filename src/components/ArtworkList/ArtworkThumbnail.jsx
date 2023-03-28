@@ -9,10 +9,20 @@ function ArtworkThumbnail(props) {
       <Link to={`/${props.data.id}`} state={location.pathname}>
         <div className={classes["image-wrap"]}>
           <div className={classes.image}>
-            <img
-              alt=""
-              src={`${IIIF_URL}/${props.data.image_id}/full/400,/0/default.jpg`}
-            />
+            {props.data.image_id ? (
+              <img
+                alt={props.data.title}
+                src={`${IIIF_URL}/${props.data.image_id}/full/400,/0/default.jpg`}
+              />
+            ) : (
+              <div className={classes["placeholder__wrap"]}>
+                <img
+                  className={classes.placeholder}
+                  alt="No image avaliable."
+                  src={"src/assets/icons/image-unavaliable-line.svg"}
+                />
+              </div>
+            )}
           </div>
         </div>
 

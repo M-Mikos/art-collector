@@ -5,7 +5,7 @@
 }
 
 :root {
-  font-family: "Mulish", sans-serif;
+  font-family: "Manrope", sans-serif;
   line-height: 1.35;
   font-weight: 400;
   font-size: 62.5%;
@@ -22,20 +22,21 @@
 
   /* --- COLORS --- */
 
-  --primary: #e6b44a;
-  --primaryLight: #f8eea3;
-  --primaryDark: #db7c33;
+  --primary: #b76774;
+  --primary-light: #d19ea6;
+  --primary-dark: #8b414e;
 
-  --neutral900: #1d1c18;
-  --neutral800: #4b4644;
-  --neutral700: #6b6663;
-  --neutral600: #7f7a78;
-  --neutral500: #a9a4a1;
-  --neutral400: #c7c2bf;
-  --neutral300: #eae4e1;
-  --neutral200: #f6f0ed;
-  --neutral100: #fbf5f2;
-  --neutral50: #fffaf7;
+  --neutral900: #19181d;
+  --neutral850: #2e2d34;
+  --neutral800: #45444b;
+  --neutral700: #65636b;
+  --neutral600: #79787f;
+  --neutral500: #a3a1a9;
+  --neutral400: #c1bfc7;
+  --neutral300: #e3e1ea;
+  --neutral200: #efedf6;
+  --neutral100: #f4f2fb;
+  --neutral50: #f9f7ff;
 }
 
 body {
@@ -45,19 +46,13 @@ body {
   font-size: 1.6rem;
 }
 
-main {
-  max-width: 1200px;
-  margin: auto;
-}
-
 /* --- HEADERS --- */
 
 h1,
 h2,
 h3,
 h4 {
-  font-family: "Nanum Myeongjo", serif;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 h1 {
@@ -79,11 +74,12 @@ h4 {
 a {
   font-weight: 500;
   text-decoration: none;
-  color: var(--primary);
+  color: var(--neutral50);
+  transition: color 0.3s;
 }
 
 a:hover {
-  color: var(--primaryDark);
+  color: var(--neutral50);
 }
 
 button {
@@ -93,14 +89,56 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: var(--neutral900);
-  color: #fff;
+  color: var(--neutral500);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
 }
 button:hover {
-  border-color: var(--primary);
+  background-color: var(--neutral850);
+  border-color: var(--neutral700);
+  color: var(--neutral50);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* --- ROOT LAYOUT & STYLE--- */
+
+.root__container {
+  display: grid;
+  grid-template-columns: 25rem 1fr;
+  grid-template-rows: 10rem 1fr 4rem;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+
+  min-height: 100vh;
+  max-height: 100vh;
+}
+.root__header {
+  grid-area: header;
+  background: var(--neutral900);
+  padding: 2rem;
+}
+.root__sidebar {
+  grid-area: sidebar;
+  min-height: 300px;
+  background: var(--neutral900);
+  padding: 2rem;
+}
+
+.root__main {
+  grid-area: main;
+  min-height: 500px;
+  max-height: 100%;
+  overflow-y: scroll;
+  background: linear-gradient(var(--neutral800), var(--neutral900) 500px);
+  padding: 6rem;
+}
+
+.root__footer {
+  grid-area: footer;
+  background: var(--neutral900);
 }

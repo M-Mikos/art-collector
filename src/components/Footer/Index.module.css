@@ -1,0 +1,16 @@
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  font-size: 1.2rem;
+  color: var(--neutral700);
+}
+.credits {
+  color: var(--neutral700);
+}
+
+.credits:hover {
+  color: var(--neutral400);
+}

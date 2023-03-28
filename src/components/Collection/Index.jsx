@@ -8,7 +8,7 @@ function Collection(props) {
   return (
     <>
       <Sidebar collection={collection} />
-      <ArtworkList items={items} message={message} infiniteScroll={true} />
+      <ArtworkList items={items} message={message} infiniteScroll={false} />
     </>
   );
 }

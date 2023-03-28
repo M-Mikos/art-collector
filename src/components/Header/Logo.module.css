@@ -1,16 +1,9 @@
-.logo {
+.logo__wrapper {
   display: flex;
-  gap: 1rem;
-  place-items: center;
+  min-width: 21rem;
+  height: 100%;
 }
 
-.logo__name {
-  font-size: 2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.logo_tagline {
-  font-size: 1.5rem;
-  font-weight: 200;
+.logo {
+  width: auto;
 }

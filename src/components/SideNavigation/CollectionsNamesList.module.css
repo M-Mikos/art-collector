@@ -1,0 +1,20 @@
+.collection-list-title {
+  padding-top: 2rem;
+  border-top: 1px solid var(--neutral500);
+}
+
+.collection-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.collection-list a {
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+
+.collection-list a:hover {
+  opacity: 1;
+}
