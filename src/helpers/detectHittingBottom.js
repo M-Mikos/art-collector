@@ -1,5 +1,5 @@
-function detectHittingBottom() {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+function detectHittingBottom(el) {
+  if (el.scrollTop === el.scrollHeight - el.offsetHeight) {
     return true;
   }
 }

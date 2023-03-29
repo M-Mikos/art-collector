@@ -7,7 +7,7 @@ function CollectionsNamesList() {
 
   return (
     <>
-      <span className={classes["collection-list-title"]}>
+      <span className={classes["collection-list__title"]}>
         Your collections:
       </span>
       <ul className={classes["collection-list"]}>

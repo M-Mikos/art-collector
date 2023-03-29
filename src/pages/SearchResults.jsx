@@ -10,7 +10,6 @@ function SearchResults() {
   const items = data.items;
   const message = data.message;
   const hasMultiplePages = data.hasMultiplePages;
-
   return (
     <>
       <ArtworkList
@@ -35,6 +34,7 @@ export async function loader({ request }) {
     }
 
     const items = await getArtworksById(data.data.map((item) => item.id));
+
     return { items: items.items, hasMultiplePages };
   } catch (error) {
     return { items: [], message: error.message, hasMultiplePages: false };

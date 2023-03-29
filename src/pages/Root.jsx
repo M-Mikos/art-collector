@@ -1,9 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Footer from "../components/Footer/Index";
 import Header from "../components/Header";
 import SideNavigation from "../components/SideNavigation";
+import LoadingIndicator from "../components/UI/LoadingIndicator";
 
 function RootLayout() {
+  const navigation = useNavigation();
+
   return (
     <div className="root__container">
       <div className="root__header">
@@ -14,7 +17,8 @@ function RootLayout() {
       </div>
       <div className="root__main">
         <main>
-          <Outlet />
+          {navigation.state === "loading" && <LoadingIndicator />}
+          {navigation.state === "idle" && <Outlet />}
         </main>
       </div>
       <div className="root__footer">

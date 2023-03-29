@@ -12,20 +12,23 @@ function ArtworkList(props) {
     props.items,
     searchParams
   );
+  const root = document.getElementById("main");
+  console.log(root);
 
   // Infinite scrool
 
   const onScroll = () => {
-    if (detectHittingBottom()) {
-      loadItems(nextPageNumber);
-      window.removeEventListener("scroll", onScroll);
+    console.log("scrolling");
+    console.log(root);
+    if (detectHittingBottom(root)) {
+      // loadItems(nextPageNumber);
+      console.log("bottom!");
+      // window.removeEventListener("scroll", onScroll);
     }
   };
 
   useEffect(() => {
-    props.infiniteScroll &&
-      false &&
-      window.addEventListener("scroll", onScroll);
+    props.infiniteScroll && window.addEventListener("scroll", onScroll);
   }, [items]);
 
   return (
