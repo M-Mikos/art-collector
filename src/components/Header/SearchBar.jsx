@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Form } from "react-router-dom";
+import Icon from "../UI/Icon";
 import classes from "./SearchBar.module.css";
 
 function SearchBar() {
@@ -31,7 +32,7 @@ function SearchBar() {
         className={classes["searchbar__button"]}
         onClick={toggleSearchbar}
       >
-        <img src={"src/assets/icons/search-line.svg"} />
+        <Icon src="src/assets/icons/search-line.svg" />
       </button>
     </div>
   );

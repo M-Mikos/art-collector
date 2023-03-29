@@ -25,16 +25,22 @@ function ArtworkThumbnail(props) {
             )}
           </div>
         </div>
-
-        <div>
-          <h3>{props.data.title}</h3>
-          <span>
-            {props.data["artist_title"]}, {props.data["date_display"]}
-          </span>
-        </div>
       </Link>
-
       <Actions id={props.data.id} />
+      <div>
+        <Link
+          to={`/search?q=${props.data["artist_title"]}`}
+          state={location.pathname}
+        >
+          <span>{props.data["artist_title"]}</span>
+        </Link>
+
+        <Link to={`/${props.data.id}`} state={location.pathname}>
+          <h3>{props.data.title}</h3>
+        </Link>
+
+        <span> {props.data["date_display"]}</span>
+      </div>
     </article>
   );
 }

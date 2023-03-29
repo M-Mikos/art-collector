@@ -135,6 +135,7 @@ button:focus-visible {
   max-height: 100%;
   background: linear-gradient(var(--neutral800), var(--neutral900) 500px);
   padding: 6rem;
+  overflow-y: scroll;
 }
 
 .root__footer {
