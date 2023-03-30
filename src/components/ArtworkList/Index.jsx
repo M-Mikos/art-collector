@@ -41,6 +41,5 @@ function ArtworkList(props) {
 export default ArtworkList;
 
 export function infiniteScroll() {
-  console.log("now i can load images!");
   loadItems(nextPageNumber);
 }

@@ -2,12 +2,13 @@ import { IIIF_URL } from "../../../config";
 import Actions from "../Artwork/Actions";
 import classes from "./ArtworkThumbnail.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function ArtworkThumbnail(props) {
   return (
     <article>
-      <Link to={`/${props.data.id}`} state={location.pathname}>
-        <div className={classes["image-wrap"]}>
+      <div className={classes["image__wrap"]}>
+        <Link to={`/${props.data.id}`} state={location.pathname}>
           <div className={classes.image}>
             {props.data.image_id ? (
               <img
@@ -24,10 +25,10 @@ function ArtworkThumbnail(props) {
               </div>
             )}
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
       <Actions id={props.data.id} />
-      <div>
+      <div className={classes["description__wrap"]}>
         <Link
           to={`/search?q=${props.data["artist_title"]}`}
           state={location.pathname}

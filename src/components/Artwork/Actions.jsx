@@ -129,7 +129,10 @@ function Actions(props) {
           <Icon src="src/assets/icons/heart-line.svg" />
         )}
       </button>
-      <form className={classes["select-collection__bar"]} onSubmit={toggleCollectionHadler}>
+      <form
+        className={classes["select-collection__bar"]}
+        onSubmit={toggleCollectionHadler}
+      >
         {collections.length !== 0 ? selectCollection : addCollection}
       </form>
       {isNotification && notification}
