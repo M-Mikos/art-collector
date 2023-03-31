@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import detectHittingBottom from "../../helpers/detectHittingBottom";
 import useLoadMoreSearchResults from "../../hooks/useLoadMoreSearchResults";
 import ArtworkThumbnail from "./ArtworkThumbnail";
 
@@ -12,23 +11,16 @@ function ArtworkList(props) {
     props.items,
     searchParams
   );
-  const root = document.getElementById("main");
-  console.log(root);
 
   // Infinite scrool
 
-  const onScroll = () => {
-    console.log("scrolling");
-    console.log(root);
-    if (detectHittingBottom(root)) {
-      // loadItems(nextPageNumber);
-      console.log("bottom!");
-      // window.removeEventListener("scroll", onScroll);
-    }
+  const infiniteScroll = () => {
+    console.log("now i can load images!");
+    // loadItems(nextPageNumber);
   };
 
   useEffect(() => {
-    props.infiniteScroll && window.addEventListener("scroll", onScroll);
+    props.infiniteScroll;
   }, [items]);
 
   return (
@@ -47,3 +39,7 @@ function ArtworkList(props) {
 }
 
 export default ArtworkList;
+
+export function infiniteScroll() {
+  loadItems(nextPageNumber);
+}

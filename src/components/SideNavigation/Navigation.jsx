@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import Icon from "../UI/Icon";
 import classes from "./Navigation.module.css";
 
 function Navigation() {
@@ -9,9 +10,7 @@ function Navigation() {
         to="/"
         end
       >
-        <div className={classes["icon__wrap"]}>
-          <img src="src/assets/icons/home-line.svg" />
-        </div>
+        <Icon src="src/assets/icons/home-line.svg" />
         <span>Home</span>
       </NavLink>
       <NavLink
@@ -19,9 +18,7 @@ function Navigation() {
         to="/favourites"
         end
       >
-        <div className={classes["icon__wrap"]}>
-          <img src="src/assets/icons/heart-line.svg" />
-        </div>
+        <Icon src="src/assets/icons/heart-line.svg" />
         <span>Favourites</span>
       </NavLink>
       <NavLink
@@ -29,9 +26,7 @@ function Navigation() {
         to="/collections"
         end
       >
-        <div className={classes["icon__wrap"]}>
-          <img src="src/assets/icons/image-2-line.svg" />
-        </div>
+        <Icon src="src/assets/icons/image-2-line.svg" />
         <span>Collections</span>
       </NavLink>
       {/* <NavLink

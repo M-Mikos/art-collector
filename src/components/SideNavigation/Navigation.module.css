@@ -29,9 +29,3 @@
 .site-nav a .active {
   color: var(--neutral50);
 }
-
-.icon__wrap {
-  display: flex;
-  align-items: center;
-  color: #fff;
-}

@@ -2,12 +2,13 @@ import { IIIF_URL } from "../../../config";
 import Actions from "../Artwork/Actions";
 import classes from "./ArtworkThumbnail.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function ArtworkThumbnail(props) {
   return (
     <article>
-      <Link to={`/${props.data.id}`} state={location.pathname}>
-        <div className={classes["image-wrap"]}>
+      <div className={classes["image__wrap"]}>
+        <Link to={`/${props.data.id}`} state={location.pathname}>
           <div className={classes.image}>
             {props.data.image_id ? (
               <img
@@ -24,17 +25,23 @@ function ArtworkThumbnail(props) {
               </div>
             )}
           </div>
-        </div>
-
-        <div>
-          <h3>{props.data.title}</h3>
-          <span>
-            {props.data["artist_title"]}, {props.data["date_display"]}
-          </span>
-        </div>
-      </Link>
-
+        </Link>
+      </div>
       <Actions id={props.data.id} />
+      <div className={classes["description__wrap"]}>
+        <Link
+          to={`/search?q=${props.data["artist_title"]}`}
+          state={location.pathname}
+        >
+          <span>{props.data["artist_title"]}</span>
+        </Link>
+
+        <Link to={`/${props.data.id}`} state={location.pathname}>
+          <h3>{props.data.title}</h3>
+        </Link>
+
+        <span> {props.data["date_display"]}</span>
+      </div>
     </article>
   );
 }

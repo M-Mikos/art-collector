@@ -1,22 +1,28 @@
 article {
-  height: fit-content;
-  background-color: var(--neutral900);
+  height: 100%;
   padding: 3rem;
-  transition: all 0.2s;
+  transition: outline 0.15s, background-color 0.15s;
+  outline: 1px solid var(--neutral800);
+  border-radius: var(--radius-small);
 }
 
 article:hover {
   outline: 1px solid var(--neutral700);
-  background-color: var(--neutral800);
+  background-color: #ffffff05;
 }
 
-.image-wrap {
+.image__wrap {
   width: 100%;
-  height: 100%;
 }
 
 .image {
   aspect-ratio: 1 / 1;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .placeholder__wrap {
@@ -33,10 +39,16 @@ article:hover {
   height: 3rem;
 }
 
-img {
-  /* flex-shrink: 1; */
-  width: 100%;
+.action-bar__wrap {
+  opacity: 1;
+  transition: opacity 0.2s;
+  /* margin-top: -6rem; */
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.description__wrap {
   height: 100%;
-  object-fit: contain;
-  /* min-height: 100%; */
 }

@@ -37,6 +37,8 @@
   --neutral200: #efedf6;
   --neutral100: #f4f2fb;
   --neutral50: #f9f7ff;
+
+  --radius-small: 0.6rem;
 }
 
 body {
@@ -83,24 +85,19 @@ a:hover {
 }
 
 button {
-  border: 1px solid transparent;
+  border: none;
   padding: 0.6rem 2rem;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--neutral900);
-  color: var(--neutral500);
+  background-color: transparent;
+  color: var(--neutral50);
+  opacity: 0.6;
   cursor: pointer;
-  transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+  transition: opacity 0.15s;
 }
 button:hover {
-  background-color: var(--neutral850);
-  border-color: var(--neutral700);
-  color: var(--neutral50);
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  opacity: 1;
 }
 
 /* --- ROOT LAYOUT & STYLE--- */
@@ -135,6 +132,7 @@ button:focus-visible {
   max-height: 100%;
   background: linear-gradient(var(--neutral800), var(--neutral900) 500px);
   padding: 6rem;
+  overflow-y: scroll;
 }
 
 .root__footer {
