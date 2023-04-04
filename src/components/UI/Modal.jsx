@@ -1,18 +1,23 @@
 import ReactDOM from "react-dom";
 import classes from "./Modal.module.css";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
 
 function Modal(props) {
+  const dispatch = useDispatch();
+
+  const toggle = () => {
+    dispatch(uiActions.toggleModal());
+  };
+
   return (
     <>
       {ReactDOM.createPortal(
         <div className={classes.modal}>
-          <div
-            className={classes["modal__overlay"]}
-            onClick={props.close}
-          ></div>
+          <div className={classes["modal__overlay"]} onClick={toggle}></div>
 
           <div className={classes["modal__window"]}>
-            <button className={classes["modal__close"]} onClick={props.close} />
+            <button className={classes["modal__close"]} onClick={toggle} />
             {props.children}
           </div>
         </div>,

@@ -1,0 +1,25 @@
+.terms {
+  list-style-type: none;
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.terms li {
+  margin-top: 1rem;
+}
+
+.terms li a {
+  padding: 0.8rem 2.5rem;
+  border-radius: 5rem;
+  white-space: nowrap;
+  background-color: var(--neutral850);
+  color: var(--neutral400);
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.terms li a:hover {
+  opacity: 1;
+}

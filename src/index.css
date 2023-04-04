@@ -108,7 +108,7 @@ button:hover {
 
 .root__container {
   display: grid;
-  grid-template-columns: 22rem 1fr;
+  grid-template-columns: 25rem 1fr;
   grid-template-rows: 8rem 1fr 4rem;
   grid-template-areas:
     "header header"

@@ -1,4 +1,4 @@
-import CollectionsList from "../components/CollectionsList";
+import CollectionsList from "../components/CollectionsList/Index.jsx";
 
 function Collections() {
   return (

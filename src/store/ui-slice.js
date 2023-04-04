@@ -4,19 +4,24 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     popupNotification: { display: false, message: null },
-    modal: false,
-    contentBottomHit: false,
+    modal: { display: false, data: null },
+    contentContainerBottomHit: false,
   },
   reducers: {
-    toggleNotification(state, action) {
-      state.popupNotification.display = !state.popupNotification.display;
+    showNotification(state, action) {
+      state.popupNotification.display = true;
       state.popupNotification.message = action.payload;
     },
-    toggleModal(state) {
-      state.modal = !state.modal;
+    hideNotification(state) {
+      state.popupNotification.display = false;
+      state.popupNotification.message = null;
+    },
+    toggleModal(state, action) {
+      state.modal.display = !state.modal.display;
+      state.modal.data = action.payload;
     },
     setContentBottomHit(state, action) {
-      state.contentBottomHit = action.payload;
+      state.contentContainerBottomHit = action.payload;
     },
   },
 });

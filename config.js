@@ -7,3 +7,7 @@ export const THUMBNAIL_PROPS =
   "id,title,image_id,alt_text,artist_title,date_display";
 export const ARTWORK_PROPS =
   "id,title,image_id,alt_text,artist_title,date_display,medium_display,place_of_origin,style_title,term_titles,dimensions";
+
+// User Interface
+
+export const POPUP_NOTIFICATION_TIMEOUT = 2000;

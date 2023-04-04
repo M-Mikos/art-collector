@@ -1,47 +1,35 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import useNotification from "../../hooks/useNotification";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { collectionsActions } from "../../store/collections-slice";
-import AddCollection from "../CollectionsList/AddCollection";
-import Modal from "../UI/Modal";
+import useNotification from "../../hooks/useNotification";
+import { uiActions } from "../../store/ui-slice";
 
 function Actions(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [notification, isNotification, showNotification] = useNotification();
-  const [isModal, setIsModal] = useState(false);
+  const [showNotification] = useNotification();
 
-  const openModal = () => {
-    setIsModal(true);
-  };
-
-  const closeModal = () => {
-    setIsModal(false);
+  const editHandler = () => {
+    dispatch(
+      uiActions.toggleModal({
+        mode: "edit",
+        collectionId: props.collectionId,
+        currentTitle: props.currentTitle,
+        currentDescription: props.currentDescription,
+      })
+    );
   };
 
   const deleteHandler = () => {
     dispatch(collectionsActions.remove(props.collectionId));
-    navigate(`/collections?deleted=${props.collectionId}`);
+    navigate(`/collections`);
+    showNotification("Collection deleted");
   };
 
   return (
     <>
-      <button onClick={openModal}>Edit</button>
+      <button onClick={editHandler}>Edit</button>
       <button onClick={deleteHandler}>Delete</button>
-      {isModal && (
-        <Modal close={closeModal}>
-          <AddCollection
-            mode={"Edit"}
-            close={closeModal}
-            showNotification={showNotification}
-            collectionId={props.collectionId}
-            currentTitle={props.currentTitle}
-            currentDescription={props.currentDescription}
-          />
-        </Modal>
-      )}
-      {isNotification && notification}
     </>
   );
 }
