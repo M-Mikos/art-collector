@@ -1,9 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Icon from "../UI/Icon";
 
 function Back(props) {
+  const navigate = useNavigate();
+  const clickHandler = () => {
+    navigate(props.path);
+  };
+
   return (
-    <button>
-      <Link to={props.path}>Back</Link>
+    <button onClick={clickHandler}>
+      <Icon src="src/assets/icons/arrow-left-line.svg" /> <span>Back</span>
     </button>
   );
 }

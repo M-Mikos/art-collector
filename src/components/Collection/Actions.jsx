@@ -22,7 +22,7 @@ function Actions(props) {
 
   const deleteHandler = () => {
     dispatch(collectionsActions.remove(props.collectionId));
-    navigate(`/my-account/collections?deleted=${props.collectionId}`);
+    navigate(`/collections?deleted=${props.collectionId}`);
   };
 
   return (

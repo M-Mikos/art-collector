@@ -22,12 +22,6 @@ function AddCollection(props) {
     }
 
     if (props.mode === "Edit") {
-      console.log(
-        "edit",
-        props.collectionId,
-        titleRef.current.value,
-        descriptionRef.current.value
-      );
       dispatch(
         collectionsActions.edit({
           collectionId: props.collectionId,
@@ -64,7 +58,7 @@ function AddCollection(props) {
         </div>
         <div>
           <label htmlFor="description">Description</label>
-          <input
+          <textarea
             id="description"
             type="textarea"
             name="description"
