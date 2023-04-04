@@ -89,17 +89,17 @@ function Actions(props) {
           </option>
         ))}
       </select>
-      <button type="submit">
+      <button type="submit" className={classes["btn--collection"]}>
         {isInCollection ? (
-          <div className={classes["btn--collection"]}>
+          <>
             <Icon src="src/assets/icons/remove-line.svg" />
             <span>Remove</span>
-          </div>
+          </>
         ) : (
-          <div className={classes["btn--collection"]}>
+          <>
             <Icon src="src/assets/icons/add-line.svg" />
             <span>Add</span>
-          </div>
+          </>
         )}
       </button>{" "}
     </>
@@ -107,7 +107,12 @@ function Actions(props) {
 
   const addCollection = (
     <>
-      <button onClick={openModal}>Create Collection</button>
+      <button onClick={openModal}>
+        <div className={classes["btn--collection"]}>
+          <Icon src="src/assets/icons/add-line.svg" />
+          <span>Create collection</span>
+        </div>
+      </button>
       {isModal && (
         <Modal close={closeModal}>
           <AddCollection

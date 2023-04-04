@@ -1,4 +1,4 @@
-import Sidebar from "./Sidebar";
+import Banner from "./Banner";
 import ArtworkList from "../ArtworkList/Index";
 
 function Collection(props) {
@@ -7,7 +7,7 @@ function Collection(props) {
   const message = props.data.message;
   return (
     <>
-      <Sidebar collection={collection} />
+      <Banner collection={collection} items={items} />
       <ArtworkList items={items} message={message} infiniteScroll={false} />
     </>
   );

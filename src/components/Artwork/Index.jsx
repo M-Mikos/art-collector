@@ -28,33 +28,34 @@ function Artwork(props) {
   let { state } = useLocation();
 
   return (
-    <>
-      <div className={classes.background}></div>
-      <div className={classes.content}>
+    <div className={classes.content}>
+      <div className={classes["back__wrap"]}>
         {state && <Back path={state} />}
-        <Display imgId={imgId} altText={altText} />
-        <div className="">
-          <Title title={title} date={date} artist={artist} />
-          <Actions id={id} />
-        </div>
-
-        <Details
-          imgId={imgId}
-          altText={altText}
-          data={{
-            title,
-            artist,
-            place,
-            date,
-            style,
-            medium,
-            dimensions,
-            id,
-          }}
-        />
-        <Terms terms={terms} />
       </div>
-    </>
+      <div className={classes["display__wrap"]}>
+        <Display imgId={imgId} altText={altText} />
+      </div>
+      <div className={classes["actions__wrap"]}>
+        <Actions id={id} />
+      </div>
+      <Title title={title} date={date} artist={artist} />
+
+      <Details
+        imgId={imgId}
+        altText={altText}
+        data={{
+          title,
+          artist,
+          place,
+          date,
+          style,
+          medium,
+          dimensions,
+          id,
+        }}
+      />
+      <Terms terms={terms} />
+    </div>
   );
 }
 

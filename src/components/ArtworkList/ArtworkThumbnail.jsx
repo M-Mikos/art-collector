@@ -33,7 +33,9 @@ function ArtworkThumbnail(props) {
           to={`/search?q=${props.data["artist_title"]}`}
           state={location.pathname}
         >
-          <span>{props.data["artist_title"]}</span>
+          <span className={classes["description__author"]}>
+            {props.data["artist_title"]}
+          </span>
         </Link>
 
         <Link to={`/${props.data.id}`} state={location.pathname}>
