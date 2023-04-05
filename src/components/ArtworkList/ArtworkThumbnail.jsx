@@ -2,16 +2,16 @@ import { IIIF_URL } from "../../../config";
 import Actions from "../Artwork/Actions";
 import classes from "./ArtworkThumbnail.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 function ArtworkThumbnail(props) {
   return (
     <article className={classes.artwork}>
       <div className={classes["image__wrap"]}>
         <Link to={`/${props.data.id}`} state={location.pathname}>
-          <div className={classes.image}>
+          <div className={classes["image__container"]}>
             {props.data.image_id ? (
               <img
+                className={classes.image}
                 alt={props.data.title}
                 src={`${IIIF_URL}/${props.data.image_id}/full/400,/0/default.jpg`}
               />
@@ -19,7 +19,7 @@ function ArtworkThumbnail(props) {
               <div className={classes["placeholder__wrap"]}>
                 <img
                   className={classes.placeholder}
-                  alt="No image avaliable."
+                  alt="No image available."
                   src={"src/assets/icons/image-unavaliable-line.svg"}
                 />
               </div>
