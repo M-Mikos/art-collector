@@ -1,4 +1,4 @@
-article {
+.artwork {
   height: 100%;
   padding: 3rem;
   transition: outline 0.15s, background-color 0.15s;
@@ -6,7 +6,7 @@ article {
   border-radius: var(--radius-small);
 }
 
-article:hover {
+.artwork:hover {
   outline: 1px solid var(--neutral700);
   background-color: #ffffff05;
 }

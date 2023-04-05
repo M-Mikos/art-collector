@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { favActions } from "../../store/fav-slice";
 import { collectionsActions } from "../../store/collections-slice";
 import { useRef, useState } from "react";
-import AddCollection from "../CollectionsList/AddCollection";
-import Modal from "../UI/Modal";
 import Icon from "../UI/Icon";
 
 import classes from "./Actions.module.css";

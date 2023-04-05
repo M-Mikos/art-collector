@@ -47,13 +47,13 @@ function AddCollection(props) {
   };
 
   return (
-    <>
+    <div className={classes["form__wrapper"]}>
       <h2>
         {props.data.mode === "add"
           ? "Create new collection"
           : "Edit collection"}
       </h2>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className={classes.form}>
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -75,10 +75,14 @@ function AddCollection(props) {
             defaultValue={props.data.currentDescription}
           />
         </div>
-        <button type="submit">Submit</button>
-        <button onClick={toggleModal}>Cancel</button>
+        <div className={classes["form__actions"]}>
+          <button type="submit" className={classes.submit}>
+            Submit
+          </button>
+          <button onClick={toggleModal}>Cancel</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

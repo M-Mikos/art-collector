@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { collectionsActions } from "../../store/collections-slice";
 import useNotification from "../../hooks/useNotification";
 import { uiActions } from "../../store/ui-slice";
+import Icon from "../UI/Icon";
+
+import classes from "./Actions.module.css";
 
 function Actions(props) {
   const dispatch = useDispatch();
@@ -27,10 +30,16 @@ function Actions(props) {
   };
 
   return (
-    <>
-      <button onClick={editHandler}>Edit</button>
-      <button onClick={deleteHandler}>Delete</button>
-    </>
+    <div className={classes["actions__wrapper"]}>
+      <button onClick={editHandler} className={classes["actions__button"]}>
+        <Icon src="src/assets/icons/edit-line.svg" />
+        <span>Edit</span>
+      </button>
+      <button onClick={deleteHandler} className={classes["actions__button"]}>
+        <Icon src="src/assets/icons/delete-line.svg" />
+        <span>Delete</span>
+      </button>
+    </div>
   );
 }
 

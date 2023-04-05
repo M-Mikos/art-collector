@@ -1,5 +1,4 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import { infiniteScroll } from "../components/ArtworkList/Index";
 import Footer from "../components/Footer/Index";
 import Header from "../components/Header";
 import SideNavigation from "../components/SideNavigation";
@@ -9,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "../components/UI/Modal";
 import AddCollection from "../components/CollectionsList/AddCollection";
 import { uiActions } from "../store/ui-slice";
+import Lightbox from "../components/Artwork/Lightbox";
 
 function RootLayout() {
   const navigation = useNavigation();
@@ -25,7 +25,7 @@ function RootLayout() {
   // Modal control
   const isModal = useSelector((state) => state.ui.modal.display);
 
-  const data = useSelector((state) => state.ui.modal.data);
+  const modalData = useSelector((state) => state.ui.modal.data);
 
   // Scroll to bottom of content
   const scrollHandler = (element) => {
@@ -62,7 +62,12 @@ function RootLayout() {
       )}
       {isModal && (
         <Modal>
-          <AddCollection data={data} />
+          {modalData.mode === ("add" || "edit") && (
+            <AddCollection data={modalData} />
+          )}
+          {modalData.mode === "lightbox" && (
+            <Lightbox imgId={modalData.imgId} />
+          )}
         </Modal>
       )}
     </div>
