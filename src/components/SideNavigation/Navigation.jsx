@@ -1,8 +1,20 @@
 import { NavLink } from "react-router-dom";
 import Icon from "../UI/Icon";
 import classes from "./Navigation.module.css";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../store/ui-slice";
 
 function Navigation() {
+  const dispatch = useDispatch();
+
+  const toggleAdd = () => {
+    dispatch(
+      uiActions.toggleModal({
+        mode: "add",
+      })
+    );
+  };
+
   return (
     <nav className={classes["site-nav"]}>
       <NavLink
@@ -29,13 +41,11 @@ function Navigation() {
         <Icon src="src/assets/icons/image-2-line.svg" />
         <span>Collections</span>
       </NavLink>
-      {/* <NavLink
-        className={({ isActive }) => (isActive ? classes.active : "")}
-        to="/"
-        end
-      >
-        <button>Create Collection</button>
-      </NavLink> */}
+
+      <button className={classes.button} onClick={toggleAdd}>
+        <Icon src="src/assets/icons/add-line.svg" />
+        <span>Create Collection</span>
+      </button>
     </nav>
   );
 }

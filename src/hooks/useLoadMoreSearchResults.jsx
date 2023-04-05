@@ -5,12 +5,14 @@ import fetchData from "../helpers/fetchData";
 function useLoadMoreSearchResults(prevItems, searchParams) {
   const [items, setItems] = useState(prevItems);
   const [nextPageNumber, setNextPageNumber] = useState(2);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setItems(prevItems);
   }, [prevItems]);
 
   const loadItems = async (pageNumber) => {
+    setLoading(true);
     const url = `${API_URL}/search?${searchParams}&page=${pageNumber}`;
 
     // Getting items
@@ -28,9 +30,11 @@ function useLoadMoreSearchResults(prevItems, searchParams) {
     pageNumber !== totalPages
       ? setNextPageNumber((pageNumber) => pageNumber + 1)
       : setNextPageNumber(null);
+
+    setLoading(false);
   };
 
-  return [items, loadItems, nextPageNumber];
+  return [items, loadItems, nextPageNumber, loading];
 }
 
 export default useLoadMoreSearchResults;

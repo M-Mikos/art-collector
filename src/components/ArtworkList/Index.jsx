@@ -4,24 +4,30 @@ import useLoadMoreSearchResults from "../../hooks/useLoadMoreSearchResults";
 import ArtworkThumbnail from "./ArtworkThumbnail";
 
 import classes from "./Index.module.css";
+import { useSelector } from "react-redux";
+import LoadingIndicator from "../UI/LoadingIndicator";
 
 function ArtworkList(props) {
   const [searchParams] = useSearchParams();
-  const [items, loadItems, nextPageNumber] = useLoadMoreSearchResults(
+  const isBottomHit = useSelector(
+    (state) => state.ui.contentContainerBottomHit
+  );
+
+  const [items, loadItems, nextPageNumber, loading] = useLoadMoreSearchResults(
     props.items,
     searchParams
   );
 
   // Infinite scrool
 
-  const infiniteScroll = () => {
-    console.log("now i can load images!");
-    // loadItems(nextPageNumber);
-  };
-
   useEffect(() => {
-    props.infiniteScroll;
-  }, [items]);
+    props.infiniteScroll &&
+      isBottomHit &&
+      props.hasMultiplePages &&
+      nextPageNumber &&
+      !loading &&
+      loadItems(nextPageNumber);
+  }, [isBottomHit]);
 
   return (
     <>
@@ -32,8 +38,11 @@ function ArtworkList(props) {
           </li>
         ))}
       </ul>
-      {!props.hasMultiplePages && !props.message && <p>No more results.</p>}
-      {props.message && <p>{props.message}</p>}
+      {loading && <LoadingIndicator />}
+      {!props.hasMultiplePages && !props.message && (
+        <p className={classes.message}>No more results.</p>
+      )}
+      {props.message && <p className={classes.message}>{props.message}</p>}
     </>
   );
 }

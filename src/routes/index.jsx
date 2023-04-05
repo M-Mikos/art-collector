@@ -9,6 +9,7 @@ import ArtworkPage from "../pages/ArtworkPage";
 import { loader as searchLoader } from "../pages/SearchResults";
 import { loader as favLoader } from "../pages/Favourites";
 import { loader as collectionDetailsLoader } from "../pages/CollectionDetails";
+import { loader as collectionListLoader } from "../pages/Collections";
 import { loader as artworkLoader } from "../components/Artwork/Index";
 import SearchResults from "../pages/SearchResults";
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       {
         path: "/collections",
         element: <Collections />,
+        loader: collectionListLoader,
       },
 
       {

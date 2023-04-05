@@ -1,30 +1,26 @@
 import { useState } from "react";
-import PopupNotification from "../components/UI/PopupNotification";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../store/ui-slice";
+import { POPUP_NOTIFICATION_TIMEOUT } from "../../config";
 
 function useNotification() {
-  const [isNotification, setIsNotification] = useState(false);
-  const [notificationMessage, setNotificationMessage] = useState();
+  const dispatch = useDispatch();
   const [timeoutID, setTimeoutId] = useState();
 
   const showNotification = (message) => {
-    setIsNotification(true);
-    setNotificationMessage(message);
+    dispatch(uiActions.showNotification(message));
 
     // End prevous notification
     clearTimeout(timeoutID);
 
     const timeout = setTimeout(() => {
-      setIsNotification(false);
-    }, 2000);
+      dispatch(uiActions.hideNotification());
+    }, POPUP_NOTIFICATION_TIMEOUT);
 
     setTimeoutId(timeout);
   };
 
-  const notification = (
-    <PopupNotification>{notificationMessage}</PopupNotification>
-  );
-
-  return [notification, isNotification, showNotification];
+  return [showNotification];
 }
 
 export default useNotification;

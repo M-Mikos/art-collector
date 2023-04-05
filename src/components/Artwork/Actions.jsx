@@ -2,32 +2,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { favActions } from "../../store/fav-slice";
 import { collectionsActions } from "../../store/collections-slice";
 import { useRef, useState } from "react";
-import useNotification from "../../hooks/useNotification";
-import AddCollection from "../CollectionsList/AddCollection";
-import Modal from "../UI/Modal";
 import Icon from "../UI/Icon";
 
 import classes from "./Actions.module.css";
+import useNotification from "../../hooks/useNotification";
+import { uiActions } from "../../store/ui-slice";
 
 function Actions(props) {
   const dispatch = useDispatch();
   const favList = useSelector((state) => state.fav.artworks);
   const collections = useSelector((state) => state.collections.collections);
   const collectionRef = useRef("");
-  const [notification, isNotification, showNotification] = useNotification();
-  const [isModal, setIsModal] = useState(false);
+  const [showNotification] = useNotification();
 
   // set initial button state for default first selection option
   const [isInCollection, setIsInCollection] = useState(() => {
     collections[0] ? collections[0].artworks.includes(props.id) : null;
   });
 
-  const openModal = () => {
-    setIsModal(true);
-  };
-
-  const closeModal = () => {
-    setIsModal(false);
+  const toggleAdd = () => {
+    dispatch(
+      uiActions.toggleModal({
+        mode: "add",
+      })
+    );
   };
 
   const isFav = () => {
@@ -107,21 +105,12 @@ function Actions(props) {
 
   const addCollection = (
     <>
-      <button onClick={openModal}>
+      <button onClick={toggleAdd}>
         <div className={classes["btn--collection"]}>
           <Icon src="src/assets/icons/add-line.svg" />
           <span>Create collection</span>
         </div>
       </button>
-      {isModal && (
-        <Modal close={closeModal}>
-          <AddCollection
-            mode={"Add"}
-            close={closeModal}
-            showNotification={showNotification}
-          />
-        </Modal>
-      )}
     </>
   );
 
@@ -140,7 +129,6 @@ function Actions(props) {
       >
         {collections.length !== 0 ? selectCollection : addCollection}
       </form>
-      {isNotification && notification}
     </div>
   );
 }

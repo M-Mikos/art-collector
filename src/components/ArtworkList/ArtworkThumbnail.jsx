@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function ArtworkThumbnail(props) {
   return (
-    <article>
+    <article className={classes.artwork}>
       <div className={classes["image__wrap"]}>
         <Link to={`/${props.data.id}`} state={location.pathname}>
           <div className={classes.image}>

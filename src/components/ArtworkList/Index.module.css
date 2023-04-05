@@ -6,3 +6,10 @@
 
   list-style-type: none;
 }
+
+.message {
+  display: block;
+  text-align: center;
+  color: var(--neutral700);
+  margin: 4rem auto;
+}

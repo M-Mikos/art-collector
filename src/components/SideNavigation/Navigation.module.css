@@ -29,3 +29,7 @@
 .site-nav a .active {
   color: var(--neutral50);
 }
+
+.button {
+  border-left: 3px solid transparent;
+}
