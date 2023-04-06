@@ -1,0 +1,15 @@
+.banner {
+  min-height: 20rem;
+  width: 100%;
+  padding: 3rem;
+  margin-bottom: 6rem;
+
+  border-radius: var(--radius-small);
+  background-position: 100% 0%;
+  background-repeat: no-repeat;
+  background-size: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

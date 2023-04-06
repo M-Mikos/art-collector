@@ -5,7 +5,7 @@
 }
 
 .details__list {
-  flex: 1 1 60%;
+  flex: 1 1 70%;
 }
 
 .details__list ul {
@@ -35,7 +35,7 @@
 }
 
 .details__image {
-  flex: 1 1 40%;
+  flex: 1 1 30%;
   height: 100%;
   max-width: 100%;
   object-fit: contain;

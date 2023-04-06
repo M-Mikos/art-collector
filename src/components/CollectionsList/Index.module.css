@@ -2,6 +2,14 @@
   list-style-type: none;
 
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 6rem;
+}
+
+.banner {
+  margin-bottom: 6rem;
+}
+
+.button {
+  padding: 1rem 0;
 }
