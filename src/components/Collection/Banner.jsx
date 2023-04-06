@@ -3,7 +3,6 @@ import Actions from "./Actions";
 import classes from "./Banner.module.css";
 
 function Banner(props) {
-  console.log(props);
   return (
     <div
       className={classes.banner}

@@ -1,17 +1,21 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useSearchParams } from "react-router-dom";
 import getSearchPath from "../helpers/getSearchPath";
 import getArtworksById from "../helpers/getArtworksById";
 import ArtworkList from "../components/ArtworkList/Index";
 import { API_URL } from "../../config";
 import fetchData from "../helpers/fetchData";
+import TitleBanner from "../components/UI/TitleBanner";
 
 function SearchResults() {
-  const data = useLoaderData();
-  const items = data.items;
-  const message = data.message;
-  const hasMultiplePages = data.hasMultiplePages;
+  const { items, message, hasMultiplePages, itemsQuantity } = useLoaderData();
+  const [searchParams] = useSearchParams();
+
   return (
     <>
+      <TitleBanner
+        title={`Search results for: ${searchParams.get("q")}`}
+        itemsQuantity={itemsQuantity}
+      />
       <ArtworkList
         items={items}
         message={message}
@@ -28,6 +32,7 @@ export async function loader({ request }) {
   try {
     const data = await fetchData(`${API_URL}${getSearchPath(request)}`);
     const hasMultiplePages = data.pagination["total_pages"] > 1 ? true : false;
+    const itemsQuantity = data.pagination.total;
 
     if (data.data.length === 0) {
       throw new Error("No results.");
@@ -35,7 +40,7 @@ export async function loader({ request }) {
 
     const items = await getArtworksById(data.data.map((item) => item.id));
 
-    return { items: items.items, hasMultiplePages };
+    return { items: items.items, hasMultiplePages, itemsQuantity };
   } catch (error) {
     return { items: [], message: error.message, hasMultiplePages: false };
   }

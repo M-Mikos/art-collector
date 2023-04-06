@@ -10,7 +10,8 @@ function CollectionsList(props) {
   const dispatch = useDispatch();
   const collections = useSelector((state) => state.collections.collections);
 
-  console.log(props.thumbnails);
+  console.log("col list", props.thumbnails);
+  console.log("col list", collections);
 
   const openModal = () => {
     dispatch(uiActions.toggleModal({ mode: "add" }));

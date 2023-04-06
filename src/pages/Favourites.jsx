@@ -1,8 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 import getArtworksById from "../helpers/getArtworksById";
-import ArtworkList from "../components/ArtworkList";
+import ArtworkList from "../components/ArtworkList/Index";
 
 import store from "../store";
+import TitleBanner from "../components/UI/TitleBanner";
 
 function Favourites() {
   const data = useLoaderData();
@@ -10,6 +11,7 @@ function Favourites() {
   const message = data.message;
   return (
     <>
+      <TitleBanner title="Favourites" itemsQuantity={items.length} />
       <ArtworkList items={items} message={message} infiniteScroll={false} />
     </>
   );

@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import CollectionsList from "../components/CollectionsList/Index.jsx";
 import store from "../store";
 import getArtworksById from "../helpers/getArtworksById.js";
+import TitleBanner from "../components/UI/TitleBanner.jsx";
 
 function Collections() {
   const thumbnails = useLoaderData();
@@ -25,7 +26,12 @@ export async function loader({}) {
         return collection.artworks[0] ? collection.artworks[0] : null;
       });
 
-    console.log("loader", thumbnailsIdList);
+    console.log(
+      "loader",
+      store.getState().collections.collections.map((collection) => {
+        return collection.artworks[0];
+      })
+    );
 
     const thumbnailsObjs = await getArtworksById(thumbnailsIdList);
 
