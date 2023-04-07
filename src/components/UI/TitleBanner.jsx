@@ -4,9 +4,7 @@ function TitleBanner(props) {
   return (
     <div className={classes.banner}>
       <h1>{props.title}</h1>
-      {props.itemsQuantity && (
-        <span> Number of artworks: {props.itemsQuantity}</span>
-      )}
+      {props.subtitle && <span> {props.subtitle} </span>}
     </div>
   );
 }

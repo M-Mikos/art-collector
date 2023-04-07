@@ -11,7 +11,10 @@ function Favourites() {
   const message = data.message;
   return (
     <>
-      <TitleBanner title="Favourites" itemsQuantity={items.length} />
+      <TitleBanner
+        title="Favourites"
+        subtitle={`Number of artworks: ${items.length}`}
+      />
       <ArtworkList items={items} message={message} infiniteScroll={false} />
     </>
   );

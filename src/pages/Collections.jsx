@@ -7,10 +7,16 @@ import TitleBanner from "../components/UI/TitleBanner.jsx";
 function Collections() {
   const thumbnails = useLoaderData();
 
-  console.log(thumbnails);
-
   return (
     <>
+      <TitleBanner
+        title="Collections"
+        subtitle={
+          thumbnails.length === 1
+            ? `You have 1 collection.`
+            : `You have ${thumbnails.length} collections.`
+        }
+      />
       <CollectionsList thumbnails={thumbnails} />
     </>
   );
@@ -25,13 +31,6 @@ export async function loader({}) {
       .collections.collections.map((collection) => {
         return collection.artworks[0] ? collection.artworks[0] : null;
       });
-
-    console.log(
-      "loader",
-      store.getState().collections.collections.map((collection) => {
-        return collection.artworks[0];
-      })
-    );
 
     const thumbnailsObjs = await getArtworksById(thumbnailsIdList);
 

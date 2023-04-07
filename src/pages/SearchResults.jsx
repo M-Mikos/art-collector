@@ -14,7 +14,7 @@ function SearchResults() {
     <>
       <TitleBanner
         title={`Search results for: ${searchParams.get("q")}`}
-        itemsQuantity={itemsQuantity}
+        subtitle={`Number of artworks: ${itemsQuantity}`}
       />
       <ArtworkList
         items={items}

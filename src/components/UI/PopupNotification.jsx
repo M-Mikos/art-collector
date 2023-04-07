@@ -5,7 +5,9 @@ function PopupNotification(props) {
   return (
     <>
       {ReactDOM.createPortal(
-        <div className={classes.popup}>{props.children}</div>,
+        <div className={classes["popup__wrapper"]}>
+          <div className={classes.popup}>{props.children}</div>
+        </div>,
         document.getElementById("popup-notification-root")
       )}
     </>

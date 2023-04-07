@@ -42,8 +42,8 @@ function Actions(props) {
     // Notification
 
     isFav()
-      ? showNotification("Removed from favorites")
-      : showNotification("Added to favorites");
+      ? showNotification("Removed from favourites")
+      : showNotification("Added to favourites");
 
     dispatch(favActions.toggle(props.id));
   };

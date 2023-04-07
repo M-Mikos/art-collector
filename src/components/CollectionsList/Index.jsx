@@ -20,10 +20,9 @@ function CollectionsList(props) {
   return (
     <>
       <div className={classes.banner}>
-        <h1>Collections</h1>
         <button onClick={openModal} className={classes.button}>
           <Icon src="src/assets/icons/add-box-fill.svg" />
-          Add Collection
+          Create Collection
         </button>
       </div>
 
