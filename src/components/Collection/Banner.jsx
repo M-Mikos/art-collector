@@ -6,9 +6,11 @@ function Banner(props) {
   return (
     <div
       className={classes.banner}
-      style={{
-        backgroundImage: `linear-gradient(to right, rgba(25, 24, 29, 1) 0%, rgba(25, 24, 29, 1) 50%, rgba(25, 24, 29,0.6) 100%), url("${IIIF_URL}/${props.thumbnail}${ARTWORKS_URL_LARGE_SUFFIX}")`,
-      }}
+      style={
+        props.thumbnail && {
+          backgroundImage: `linear-gradient(to right, rgba(25, 24, 29, 1) 0%, rgba(25, 24, 29, 1) 50%, rgba(25, 24, 29,0.6) 100%), url("${IIIF_URL}/${props.thumbnail}${ARTWORKS_URL_LARGE_SUFFIX}")`,
+        }
+      }
     >
       <h1>{props.collection.title}</h1>
       {props.collection.description && (

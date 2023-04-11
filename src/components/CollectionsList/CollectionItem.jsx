@@ -38,7 +38,7 @@ function Collection(props) {
           style={
             props.thumbnail
               ? {
-                  backgroundImage: `url("${IIIF_URL}/${props.thumbnail}${ARTWORKS_URL_THUMBNAIL_SUFFIX}")`,
+                  backgroundImage: `url("${IIIF_URL}/${props.thumbnail.src}${ARTWORKS_URL_THUMBNAIL_SUFFIX}")`,
                 }
               : {
                   backgroundImage: "none",

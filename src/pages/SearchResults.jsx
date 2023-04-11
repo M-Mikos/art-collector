@@ -42,6 +42,11 @@ export async function loader({ request }) {
 
     return { items: items.items, hasMultiplePages, itemsQuantity };
   } catch (error) {
-    return { items: [], message: error.message, hasMultiplePages: false };
+    return {
+      items: [],
+      message: error.message,
+      hasMultiplePages: false,
+      itemsQuantity: 0,
+    };
   }
 }

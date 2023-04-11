@@ -3,7 +3,8 @@ import { ARTWORKS_URL_LARGE_SUFFIX, IIIF_URL } from "../../../config";
 import classes from "./Lightbox.module.css";
 
 function Lightbox(props) {
-  const [mousePosition, setMousePosition] = useState({});
+  const [imagePositionX, setImagePositionX] = useState();
+  const [imagePositionY, setImagePositionY] = useState();
   const [isZoomed, setIsZommed] = useState(false);
 
   const zoomHandler = () => {
@@ -23,8 +24,11 @@ function Lightbox(props) {
       50
     );
 
-    if (x > event.target.width / 6 && y > event.target.height / 6) {
-      setMousePosition({ x: percentageX, y: percentageY });
+    if (x > event.target.width / 6 && x < (event.target.width * 5) / 6) {
+      setImagePositionX(percentageX);
+    }
+    if (y > event.target.height / 6 && y < (event.target.height * 5) / 6) {
+      setImagePositionY(percentageY);
     }
   };
 
@@ -40,7 +44,7 @@ function Lightbox(props) {
         style={
           isZoomed
             ? {
-                transform: `scale(3) translate(${mousePosition.x}%, ${mousePosition.y}%)`,
+                transform: `scale(3) translate(${imagePositionX}%, ${imagePositionY}%)`,
               }
             : { transform: `translate(0%, 0%)` }
         }

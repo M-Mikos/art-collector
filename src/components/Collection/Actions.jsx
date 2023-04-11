@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { collectionsActions } from "../../store/collections-slice";
 import useNotification from "../../hooks/useNotification";
 import { uiActions } from "../../store/ui-slice";
@@ -10,6 +10,7 @@ import classes from "./Actions.module.css";
 function Actions(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { collectionId } = useParams();
   const [showNotification] = useNotification();
 
   const editHandler = () => {
@@ -25,8 +26,8 @@ function Actions(props) {
 
   const deleteHandler = () => {
     dispatch(collectionsActions.remove(props.collectionId));
-    navigate(`/collections`);
     showNotification("Collection deleted");
+    collectionId && navigate(`/collections`);
   };
 
   return (
