@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import Footer from "../components/Footer/Index";
-import Header from "../components/Header";
+import Header from "../components/Header/Index";
 import SideNavigation from "../components/SideNavigation";
 import LoadingIndicator from "../components/UI/LoadingIndicator";
 import PopupNotification from "../components/UI/PopupNotification";
