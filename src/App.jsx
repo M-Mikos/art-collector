@@ -2,20 +2,15 @@ import router from "./routes";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 
-import store from "./store";
-
-function saveToLocalStorage(state) {
-  try {
-    const serialisedState = JSON.stringify(state);
-    localStorage.setItem("persistantState", serialisedState);
-  } catch (e) {
-    console.warn(e);
-  }
-}
-
-// store.subscribe(saveToLocalStorage(store.getState()));
+import store, { saveToLocalStorage } from "./store";
 
 function App() {
+  // Save current state in local storage
+  const subscribeHandler = () => {
+    saveToLocalStorage(store.getState());
+  };
+  store.subscribe(subscribeHandler);
+
   return (
     <Provider store={store}>
       <RouterProvider router={router} />

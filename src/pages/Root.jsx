@@ -62,8 +62,9 @@ function RootLayout() {
       )}
       {isModal && (
         <Modal>
-          {modalData.mode === "add" ||
-            (modalData.mode === "edit" && <AddCollection data={modalData} />)}
+          {(modalData.mode === "add" || modalData.mode === "edit") && (
+            <AddCollection data={modalData} />
+          )}
           {modalData.mode === "lightbox" && (
             <Lightbox imgId={modalData.imgId} />
           )}

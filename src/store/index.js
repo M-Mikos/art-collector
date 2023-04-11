@@ -15,6 +15,15 @@ function loadFromLocalStorage() {
   }
 }
 
+export function saveToLocalStorage(state) {
+  try {
+    const serialisedState = JSON.stringify(state);
+    localStorage.setItem("persistantState", serialisedState);
+  } catch (e) {
+    console.warn(e);
+  }
+}
+
 const store = configureStore({
   reducer: {
     fav: favSlice.reducer,
