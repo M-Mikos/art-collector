@@ -42,13 +42,12 @@ function ArtworkList(props) {
       {!props.hasMultiplePages && !props.message && (
         <p className={classes.message}>No more results.</p>
       )}
+      {!nextPageNumber && !props.message && (
+        <p className={classes.message}>No more results.</p>
+      )}
       {props.message && <p className={classes.message}>{props.message}</p>}
     </>
   );
 }
 
 export default ArtworkList;
-
-export function infiniteScroll() {
-  loadItems(nextPageNumber);
-}

@@ -45,6 +45,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  max-height: 100vh;
   font-size: 1.6rem;
 }
 
@@ -55,6 +56,7 @@ h2,
 h3,
 h4 {
   font-weight: 700;
+  line-height: 1.1;
 }
 
 h1 {
@@ -73,11 +75,13 @@ h4 {
   font-size: 1.6rem;
 }
 
+/* --- LINKS, BUTTONS, FOMRS --- */
+
 a {
   font-weight: 500;
   text-decoration: none;
-  color: var(--neutral50);
-  transition: color 0.3s;
+  color: var(--neutral400);
+  transition: color 0.15s;
 }
 
 a:hover {
@@ -96,7 +100,7 @@ button {
   font-family: inherit;
   background-color: transparent;
   color: var(--neutral50);
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -129,7 +133,7 @@ textarea:focus {
 .root__container {
   display: grid;
   grid-template-columns: 25rem 1fr;
-  grid-template-rows: 8rem 1fr 4rem;
+  grid-template-rows: 7rem 1fr 2rem;
   grid-template-areas:
     "header header"
     "sidebar main"
@@ -156,7 +160,8 @@ textarea:focus {
   max-height: 100%;
   background: linear-gradient(var(--neutral800), var(--neutral900) 500px);
   padding: 6rem 6rem;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .root__footer {

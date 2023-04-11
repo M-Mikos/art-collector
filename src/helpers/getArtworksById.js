@@ -8,7 +8,12 @@ export default async function getArtworksById(idArr) {
       `${API_URL}?ids=${idStr}&fields=${THUMBNAIL_PROPS}`
     );
 
-    return { items: items.data, message: "" };
+    //Fixing unordered API response (for correct thumbnais in collection list )
+    const sortedItems = idArr.map((id) => {
+      return items.data.filter((item) => item.id === id)[0];
+    });
+
+    return { items: sortedItems, message: "" };
   } catch (error) {
     throw error;
   }

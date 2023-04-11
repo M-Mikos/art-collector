@@ -35,9 +35,15 @@ function Collection(props) {
     >
       <Link to={props.data.id}>
         <div
-          style={{
-            backgroundImage: `url("${IIIF_URL}/${props.thumbnail}${ARTWORKS_URL_THUMBNAIL_SUFFIX}")`,
-          }}
+          style={
+            props.thumbnail
+              ? {
+                  backgroundImage: `url("${IIIF_URL}/${props.thumbnail.src}${ARTWORKS_URL_THUMBNAIL_SUFFIX}")`,
+                }
+              : {
+                  backgroundImage: "none",
+                }
+          }
           className={thumbnailClasses}
         />
       </Link>

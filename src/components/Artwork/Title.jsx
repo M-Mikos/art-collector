@@ -1,11 +1,17 @@
+import { Link } from "react-router-dom";
+import classes from "./Title.module.css";
+
 function Title(props) {
   return (
-    <>
+    <div className={classes.wrapper}>
       <h1>{props.title}</h1>
-      <span>
-        {props.artist}, {props.date}
-      </span>
-    </>
+      <div className={classes.credentials}>
+        <Link to={`/search?q=${props.artist}`} state={location.pathname}>
+          {props.artist}
+        </Link>
+        , {props.date}
+      </div>
+    </div>
   );
 }
 

@@ -1,11 +1,22 @@
-.lightbox-wrapper {
-  height: 100%;
-  max-width: 100%;
-  object-fit: contain;
+.lightbox__wrapper {
+  height: calc(100vh - 10rem);
+  max-width: calc(100vw - 6rem);
+  min-height: 40rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-.lightbox-image {
-  height: 100%;
-  width: 100%;
+.lightbox__image {
+  max-height: 100%;
+  max-width: 100%;
   object-fit: contain;
+
+  cursor: zoom-in;
+}
+
+.zoom {
+  cursor: none;
 }

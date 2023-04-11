@@ -16,9 +16,9 @@ function Actions(props) {
   const [showNotification] = useNotification();
 
   // set initial button state for default first selection option
-  const [isInCollection, setIsInCollection] = useState(() => {
-    collections[0] ? collections[0].artworks.includes(props.id) : null;
-  });
+  const [isInCollection, setIsInCollection] = useState(
+    collections[0] ? collections[0].artworks.includes(props.id) : false
+  );
 
   const toggleAdd = () => {
     dispatch(
@@ -40,10 +40,9 @@ function Actions(props) {
 
   const toggleFavHadler = () => {
     // Notification
-
     isFav()
-      ? showNotification("Removed from favorites")
-      : showNotification("Added to favorites");
+      ? showNotification("Removed from favourites")
+      : showNotification("Added to favourites");
 
     dispatch(favActions.toggle(props.id));
   };
@@ -99,7 +98,7 @@ function Actions(props) {
             <span>Add</span>
           </>
         )}
-      </button>{" "}
+      </button>
     </>
   );
 

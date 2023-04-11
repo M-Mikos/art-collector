@@ -26,7 +26,6 @@ const collectionsSlice = createSlice({
     ],
   },
   reducers: {
-    repalce(state, action) {},
     create(state, action) {
       const { title, description } = action.payload;
       const newCollection = {
