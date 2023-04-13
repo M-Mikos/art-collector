@@ -23,3 +23,9 @@
 .searchbar__button img {
   width: 2rem;
 }
+
+@media (max-width: 700) {
+  .searchbar__button img {
+    width: 1.5rem;
+  }
+}
