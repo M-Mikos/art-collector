@@ -19,3 +19,7 @@
   flex: 0 0 6rem;
   border-radius: 100%;
 }
+
+.searchbar__button img {
+  width: 2rem;
+}

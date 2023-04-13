@@ -18,6 +18,7 @@
 .form textarea {
   background-color: transparent;
   color: none;
+  resize: none;
 }
 
 .form__actions {

@@ -41,12 +41,10 @@
   }
 
   .site-nav a {
+    flex: 1;
     flex-direction: column;
     gap: 0.5rem;
     padding: 1rem 0.8rem;
-  }
-
-  .site-nav a {
     border: none;
     border-bottom: 3px solid transparent;
   }
@@ -57,6 +55,7 @@
   }
 
   .button {
+    flex: 1;
     border: none;
     border-bottom: 3px solid transparent;
     flex-direction: column;
