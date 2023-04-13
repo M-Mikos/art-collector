@@ -31,6 +31,7 @@ function SearchBar() {
       <button
         className={classes["searchbar__button"]}
         onClick={toggleSearchbar}
+        aria-label="Search artworks"
       >
         <Icon src="/search-line.svg" />
         <span>Search</span>
