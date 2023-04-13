@@ -3,7 +3,7 @@ import classes from "./Icon.module.css";
 function Icon(props) {
   return (
     <div className={classes["icon__wrap"]}>
-      <img src={props.src} />
+      <img alt={props.alt ? props.alt : ""} src={props.src} />
     </div>
   );
 }

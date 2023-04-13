@@ -74,7 +74,6 @@ function Actions(props) {
   const selectCollection = (
     <>
       <select
-        id="collection"
         name="collection"
         ref={collectionRef}
         onChange={changeHandler}
@@ -115,11 +114,15 @@ function Actions(props) {
 
   return (
     <div className={classes["actions-bar"]}>
-      <button className={classes["btn--fav"]} onClick={toggleFavHadler}>
+      <button
+        className={classes["btn--fav"]}
+        aria-label="Toggle favourites"
+        onClick={toggleFavHadler}
+      >
         {isFav() ? (
-          <Icon src="/heart-fill.svg" />
+          <Icon alt="Remove from favourites" src="/heart-fill.svg" />
         ) : (
-          <Icon src="/heart-line.svg" />
+          <Icon alt="Add to favourites" src="/heart-line.svg" />
         )}
       </button>
       <form

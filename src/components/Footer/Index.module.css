@@ -7,12 +7,12 @@ footer {
   margin: 0 6rem;
 
   font-size: 1.1rem;
-  color: var(--neutral700);
+  color: var(--neutral500);
 }
 .credits {
-  color: var(--neutral700);
+  color: var(--neutral500);
 }
 
 .credits:hover {
-  color: var(--neutral400);
+  color: var(--neutral50);
 }

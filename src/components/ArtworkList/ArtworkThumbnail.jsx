@@ -39,7 +39,7 @@ function ArtworkThumbnail(props) {
         </Link>
 
         <Link to={`/${props.data.id}`} state={location.pathname}>
-          <h3>{props.data.title}</h3>
+          <h2>{props.data.title}</h2>
         </Link>
 
         <span> {props.data["date_display"]}</span>

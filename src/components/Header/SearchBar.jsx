@@ -33,6 +33,7 @@ function SearchBar() {
         onClick={toggleSearchbar}
       >
         <Icon src="/search-line.svg" />
+        <span>Search</span>
       </button>
     </div>
   );
