@@ -1,4 +1,4 @@
-import { IIIF_URL } from "../../../config";
+import { ARTWORKS_URL_THUMBNAIL_SUFFIX, IIIF_URL } from "../../../config";
 import Actions from "../Artwork/Actions";
 import classes from "./ArtworkThumbnail.module.css";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ function ArtworkThumbnail(props) {
               <img
                 className={classes.image}
                 alt={props.data.title}
-                src={`${IIIF_URL}/${props.data.image_id}/full/400,/0/default.jpg`}
+                src={`${IIIF_URL}/${props.data.image_id}${ARTWORKS_URL_THUMBNAIL_SUFFIX}`}
               />
             ) : (
               <div className={classes["placeholder__wrap"]}>

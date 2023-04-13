@@ -44,7 +44,7 @@ function Navigation() {
 
       <button className={classes.button} onClick={toggleAdd}>
         <Icon src="/add-line.svg" />
-        <span>Create Collection</span>
+        <span>Create</span>
       </button>
     </nav>
   );
