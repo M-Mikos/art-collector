@@ -34,7 +34,6 @@ function SearchBar() {
         aria-label="Search artworks"
       >
         <Icon src="/search-line.svg" />
-        <span>Search</span>
       </button>
     </div>
   );
