@@ -89,12 +89,12 @@ function Actions(props) {
       <button type="submit" className={classes["btn--collection"]}>
         {isInCollection ? (
           <>
-            <Icon src="src/assets/icons/remove-line.svg" />
+            <Icon src="/remove-line.svg" />
             <span>Remove</span>
           </>
         ) : (
           <>
-            <Icon src="src/assets/icons/add-line.svg" />
+            <Icon src="/add-line.svg" />
             <span>Add</span>
           </>
         )}
@@ -106,7 +106,7 @@ function Actions(props) {
     <>
       <button onClick={toggleAdd}>
         <div className={classes["btn--collection"]}>
-          <Icon src="src/assets/icons/add-line.svg" />
+          <Icon src="/add-line.svg" />
           <span>Create collection</span>
         </div>
       </button>
@@ -117,9 +117,9 @@ function Actions(props) {
     <div className={classes["actions-bar"]}>
       <button className={classes["btn--fav"]} onClick={toggleFavHadler}>
         {isFav() ? (
-          <Icon src="src/assets/icons/heart-fill.svg" />
+          <Icon src="/heart-fill.svg" />
         ) : (
-          <Icon src="src/assets/icons/heart-line.svg" />
+          <Icon src="/heart-line.svg" />
         )}
       </button>
       <form

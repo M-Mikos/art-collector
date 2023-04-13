@@ -36,7 +36,7 @@ function Collection(props) {
       <Link to={props.data.id}>
         <div
           style={
-            props.thumbnail
+            props.thumbnail?.src
               ? {
                   backgroundImage: `url("${IIIF_URL}/${props.thumbnail.src}${ARTWORKS_URL_THUMBNAIL_SUFFIX}")`,
                 }
@@ -52,6 +52,13 @@ function Collection(props) {
         <Link to={props.data.id}>
           <h2>{props.data.title}</h2>
         </Link>
+        {props.data.artworks.length === 0 ? (
+          <p className={classes["details__info"]}>Empty collection.</p>
+        ) : (
+          <p className={classes["details__info"]}>
+            Number of artworks: {props.data.artworks.length}
+          </p>
+        )}
         <div className={actionClasses}>
           <Actions
             collectionId={props.data.id}

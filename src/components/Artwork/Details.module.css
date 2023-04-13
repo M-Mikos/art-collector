@@ -49,3 +49,9 @@
   width: 100%;
   object-fit: contain;
 }
+
+@media (max-width: 1200px) {
+  .details__image {
+    display: none;
+  }
+}

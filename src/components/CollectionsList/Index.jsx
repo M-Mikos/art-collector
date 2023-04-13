@@ -17,7 +17,7 @@ function CollectionsList(props) {
     <>
       <div className={classes.banner}>
         <button onClick={openModal} className={classes.button}>
-          <Icon src="src/assets/icons/add-box-fill.svg" />
+          <Icon src="/add-box-fill.svg" />
           Create Collection
         </button>
       </div>

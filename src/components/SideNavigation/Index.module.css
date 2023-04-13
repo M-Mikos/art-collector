@@ -1,6 +1,16 @@
-aside {
+.sidebar {
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 1.5rem;
+  padding-top: 4rem;
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    padding: 0rem 1.5rem;
+    border: 0 solid var(--neutral850);
+    border-width: 1px 0;
+  }
 }

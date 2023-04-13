@@ -6,7 +6,7 @@ function CollectionsNamesList() {
   const collections = useSelector((state) => state.collections.collections);
 
   return (
-    <>
+    <div className={classes["collections-list__container"]}>
       <span className={classes["collection-list__title"]}>
         Your collections:
       </span>
@@ -19,7 +19,7 @@ function CollectionsNamesList() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 

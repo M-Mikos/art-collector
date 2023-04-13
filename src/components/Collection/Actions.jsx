@@ -33,11 +33,11 @@ function Actions(props) {
   return (
     <div className={classes["actions__wrapper"]}>
       <button onClick={editHandler} className={classes["actions__button"]}>
-        <Icon src="src/assets/icons/edit-line.svg" />
+        <Icon src="/edit-line.svg" />
         <span>Edit</span>
       </button>
       <button onClick={deleteHandler} className={classes["actions__button"]}>
-        <Icon src="src/assets/icons/delete-line.svg" />
+        <Icon src="/delete-line.svg" />
         <span>Delete</span>
       </button>
     </div>

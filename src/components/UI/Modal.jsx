@@ -19,7 +19,7 @@ function Modal(props) {
 
           <div className={classes["modal__window"]}>
             <button className={classes["modal__close"]} onClick={toggle}>
-              <Icon src="src/assets/icons/close-line.svg" />
+              <Icon src="/close-line.svg" />
             </button>
             {props.children}
           </div>

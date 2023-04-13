@@ -5,7 +5,7 @@ function Logo() {
   return (
     <div className={classes["logo__wrapper"]}>
       <Link to="/">
-        <img className={classes.logo} src={"src/assets/art-collector.svg"} />
+        <img className={classes.logo} src={"/art-collector.svg"} />
       </Link>
     </div>
   );

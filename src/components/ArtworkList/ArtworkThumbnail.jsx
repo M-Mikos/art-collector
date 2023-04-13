@@ -20,7 +20,7 @@ function ArtworkThumbnail(props) {
                 <img
                   className={classes.placeholder}
                   alt="No image available."
-                  src={"src/assets/icons/image-unavaliable-line.svg"}
+                  src={"/image-unavaliable-line.svg"}
                 />
               </div>
             )}

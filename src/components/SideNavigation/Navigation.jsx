@@ -22,7 +22,7 @@ function Navigation() {
         to="/"
         end
       >
-        <Icon src="src/assets/icons/home-line.svg" />
+        <Icon src="/home-line.svg" />
         <span>Home</span>
       </NavLink>
       <NavLink
@@ -30,7 +30,7 @@ function Navigation() {
         to="/favourites"
         end
       >
-        <Icon src="src/assets/icons/heart-line.svg" />
+        <Icon src="/heart-line.svg" />
         <span>Favourites</span>
       </NavLink>
       <NavLink
@@ -38,12 +38,12 @@ function Navigation() {
         to="/collections"
         end
       >
-        <Icon src="src/assets/icons/image-2-line.svg" />
+        <Icon src="/image-2-line.svg" />
         <span>Collections</span>
       </NavLink>
 
       <button className={classes.button} onClick={toggleAdd}>
-        <Icon src="src/assets/icons/add-line.svg" />
+        <Icon src="/add-line.svg" />
         <span>Create Collection</span>
       </button>
     </nav>

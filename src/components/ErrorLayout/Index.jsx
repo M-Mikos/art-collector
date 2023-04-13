@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import Header from "../Header/Index";
 import Footer from "../Footer/Index";
 import classes from "./Index.module.css";
 
-function ErrorRoot() {
+function ErrorLayout() {
   return (
     <div className={classes["error__container"]}>
       <div className={classes["error__header"]}>
@@ -11,7 +11,7 @@ function ErrorRoot() {
       </div>
       <div className={classes["error__main"]}>
         <div className={classes["error__img__wrap"]}>
-          <img src="src/assets/404.svg" />
+          <img src="/404.svg" />
         </div>
         <h1>Page could not be found.</h1>
         <p>
@@ -25,4 +25,4 @@ function ErrorRoot() {
   );
 }
 
-export default ErrorRoot;
+export default ErrorLayout;

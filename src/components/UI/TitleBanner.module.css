@@ -4,3 +4,9 @@
   gap: 2rem;
   margin-bottom: 4rem;
 }
+
+@media (max-width: 1000px) {
+  .banner {
+    margin-bottom: 2rem;
+  }
+}

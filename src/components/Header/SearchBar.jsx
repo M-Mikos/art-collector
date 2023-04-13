@@ -32,7 +32,7 @@ function SearchBar() {
         className={classes["searchbar__button"]}
         onClick={toggleSearchbar}
       >
-        <Icon src="src/assets/icons/search-line.svg" />
+        <Icon src="/search-line.svg" />
       </button>
     </div>
   );

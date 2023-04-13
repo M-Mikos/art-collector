@@ -9,7 +9,7 @@ function Back(props) {
 
   return (
     <button onClick={clickHandler}>
-      <Icon src="src/assets/icons/arrow-left-line.svg" /> <span>Back</span>
+      <Icon src="/arrow-left-line.svg" /> <span>Back</span>
     </button>
   );
 }

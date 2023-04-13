@@ -26,7 +26,7 @@
 }
 
 .select-collection__list {
-  max-width: 15rem;
+  max-width: 18rem;
   background-color: var(--neutral900);
   align-self: stretch;
   padding: 0rem 1rem;
@@ -57,4 +57,10 @@
 .select-collection__bar {
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .select-collection__list {
+    max-width: 10rem;
+  }
 }

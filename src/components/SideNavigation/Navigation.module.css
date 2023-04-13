@@ -33,3 +33,34 @@
 .button {
   border-left: 3px solid transparent;
 }
+
+@media (max-width: 700px) {
+  .site-nav {
+    flex-direction: row;
+    font-size: 1.3rem;
+  }
+
+  .site-nav a {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0.8rem;
+  }
+
+  .site-nav a {
+    border: none;
+    border-top: 3px solid transparent;
+  }
+
+  .site-nav .active {
+    border: none;
+    border-top: 3px solid #fff;
+  }
+
+  .button {
+    border: none;
+    border-top: 3px solid transparent;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0.8rem;
+  }
+}

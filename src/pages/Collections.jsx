@@ -11,6 +11,8 @@ function Collections() {
     (state) => state.collections.collections.length
   );
 
+  console.log("page", thumbnails);
+
   return (
     <>
       <TitleBanner
@@ -35,14 +37,24 @@ export async function loader() {
       return collection.artworks[0] ? collection.artworks[0] : null;
     });
 
+    console.log("thumbnailsIdList", thumbnailsIdList);
+
     const thumbnailsObjs = await getArtworksById(thumbnailsIdList);
 
+    console.log("thumbnailsObjs", thumbnailsObjs);
+
     const thumbnailsSrc = thumbnailsObjs.items.map((obj, i) => {
-      return { id: collections[i].id, src: obj["image_id"] };
+      if (!obj) {
+        return { id: collections[i].id, src: null };
+      } else {
+        return { id: collections[i].id, src: obj["image_id"] };
+      }
     });
+
+    console.log("thumbnailsSrc", thumbnailsSrc);
 
     return thumbnailsSrc;
   } catch (error) {
-    return [];
+    return [error.message];
   }
 }

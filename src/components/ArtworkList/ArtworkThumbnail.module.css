@@ -1,6 +1,6 @@
 .artwork {
   height: 100%;
-  padding: 3rem;
+  padding: 2rem;
   transition: outline 0.15s, background-color 0.15s;
   outline: 1px solid var(--neutral800);
   border-radius: var(--radius-small);

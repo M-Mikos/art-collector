@@ -1,8 +1,7 @@
-import { useRouteError } from "react-router-dom";
-import ErrorRoot from "../components/ErrorRoot";
+import ErrorLayout from "../components/ErrorLayout";
 
 function Error() {
-  return <ErrorRoot />;
+  return <ErrorLayout />;
 }
 
 export default Error;
