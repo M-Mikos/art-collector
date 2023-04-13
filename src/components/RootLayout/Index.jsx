@@ -33,7 +33,7 @@ function RootLayout() {
   const scrollHandler = (element) => {
     const onBottom =
       element.target.scrollHeight - element.target.scrollTop <=
-      element.target.clientHeight;
+      element.target.clientHeight + 1;
 
     if (onBottom) {
       dispatch(uiActions.setContentBottomHit(true));
@@ -51,8 +51,8 @@ function RootLayout() {
         <SideNavigation />
       </div>
       <main className={classes["root__main"]} onScroll={scrollHandler}>
-        {navigation.state === "loading" && <LoadingIndicator />}
         {navigation.state === "idle" && <Outlet />}
+        {navigation.state === "loading" && <LoadingIndicator />}
       </main>
       <div className={classes["root__footer"]}>
         <Footer />
@@ -70,6 +70,7 @@ function RootLayout() {
           )}
         </Modal>
       )}
+      <div />
     </div>
   );
 }
