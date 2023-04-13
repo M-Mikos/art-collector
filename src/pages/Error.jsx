@@ -1,4 +1,4 @@
-import ErrorLayout from "../components/ErrorLayout/Index.jsx";
+import ErrorLayout from "../components/ErrorLayout/index.jsx";
 
 function Error() {
   return <ErrorLayout />;

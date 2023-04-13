@@ -1,4 +1,4 @@
-import RootLayout from "../components/RootLayout";
+import RootLayout from "../components/RootLayout/index.jsx";
 
 function Root() {
   return <RootLayout />;
