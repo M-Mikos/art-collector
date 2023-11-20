@@ -1,0 +1,8 @@
+.actions__wrapper {
+  display: flex;
+  gap: 3rem;
+}
+
+.actions__button {
+  padding: 0;
+}

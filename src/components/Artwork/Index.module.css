@@ -1,0 +1,28 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.display__wrap {
+  min-height: 40rem;
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actions__wrap {
+  border-bottom: 1px solid var(--neutral600);
+}
+@media (max-width: 700px) {
+  .display__wrap {
+    min-height: 40rem;
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

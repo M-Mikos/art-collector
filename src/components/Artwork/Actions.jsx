@@ -1,0 +1,165 @@
+import { useDispatch, useSelector } from "react-redux";
+import { favActions } from "../../store/fav-slice";
+import { collectionsActions } from "../../store/collections-slice";
+import { useRef, useState } from "react";
+import Icon from "../UI/Icon";
+
+import classes from "./Actions.module.css";
+import useNotification from "../../hooks/useNotification";
+import { uiActions } from "../../store/ui-slice";
+import { useLocation, useParams } from "react-router-dom";
+
+function Actions(props) {
+  const dispatch = useDispatch();
+  const favList = useSelector((state) => state.fav.artworks);
+  const collections = useSelector((state) => state.collections.collections);
+  const collectionRef = useRef("");
+  const params = useParams();
+  const [showNotification] = useNotification();
+  const location = useLocation();
+
+  // set initial button state for default first selection option
+  const [isInCollection, setIsInCollection] = useState(
+    collections[0] ? collections[0].artworks.includes(props.id) : false
+  );
+
+  const toggleAdd = () => {
+    dispatch(
+      uiActions.toggleModal({
+        mode: "add",
+      })
+    );
+  };
+
+  const isFav = () => {
+    return favList.includes(props.id);
+  };
+
+  const checkIfIsInCollection = (collectionId) => {
+    return collections
+      .find((item) => item.id === collectionId)
+      .artworks.includes(props.id);
+  };
+
+  const toggleFavHadler = () => {
+    // Notification
+    isFav()
+      ? showNotification("Removed from favourites")
+      : showNotification("Added to favourites");
+
+    dispatch(favActions.toggle(props.id));
+  };
+
+  const changeHandler = () => {
+    const collectionId = collectionRef.current.value;
+    setIsInCollection(checkIfIsInCollection(collectionId));
+  };
+
+  const toggleCollectionHadler = (event) => {
+    event.preventDefault();
+
+    // select collection ID by form or by path
+    const collectionId =
+      event._reactName === "onSubmit"
+        ? collectionRef.current.value
+        : params.collectionId;
+
+    // Notification
+    checkIfIsInCollection(collectionId)
+      ? showNotification("Removed from collection")
+      : showNotification("Added to collection");
+
+    dispatch(
+      collectionsActions.toggleArtwork({
+        collectionId,
+        artworkId: props.id,
+      })
+    );
+
+    setIsInCollection((prevState) => !prevState);
+  };
+
+  const selectCollection = (
+    <>
+      <select
+        name="collection"
+        ref={collectionRef}
+        onChange={changeHandler}
+        className={classes["select-collection__list"]}
+      >
+        {collections.map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.title}
+          </option>
+        ))}
+      </select>
+      <button type="submit" className={classes["btn--collection"]}>
+        {isInCollection ? (
+          <>
+            <Icon src="/remove-line.svg" />
+            <span>Remove</span>
+          </>
+        ) : (
+          <>
+            <Icon src="/add-line.svg" />
+            <span>Add</span>
+          </>
+        )}
+      </button>
+    </>
+  );
+
+  const addCollection = (
+    <>
+      <button onClick={toggleAdd}>
+        <div className={classes["btn--collection"]}>
+          <Icon src="/add-line.svg" />
+          <span>Create collection</span>
+        </div>
+      </button>
+    </>
+  );
+
+  return (
+    <>
+      {location.pathname !== "/favourites" && !params.collectionId && (
+        <div className={classes["actions-bar"]}>
+          <button
+            className={classes["btn--fav"]}
+            aria-label="Toggle favourites"
+            onClick={toggleFavHadler}
+          >
+            {isFav() ? (
+              <Icon alt="Remove from favourites" src="/heart-fill.svg" />
+            ) : (
+              <Icon alt="Add to favourites" src="/heart-line.svg" />
+            )}
+          </button>
+          <form
+            className={classes["select-collection__bar"]}
+            onSubmit={toggleCollectionHadler}
+          >
+            {collections.length !== 0 ? selectCollection : addCollection}
+          </form>
+        </div>
+      )}
+      {params.collectionId && (
+        <button
+          className={classes["btn--delete"]}
+          onClick={toggleCollectionHadler}
+        >
+          <Icon alt="Remove from collection" src="/delete-line.svg" /> Remove
+          from collection
+        </button>
+      )}
+      {location.pathname === "/favourites" && (
+        <button className={classes["btn--delete"]} onClick={toggleFavHadler}>
+          <Icon alt="Remove from favourites" src="/delete-line.svg" /> Remove
+          from favourites
+        </button>
+      )}
+    </>
+  );
+}
+
+export default Actions;

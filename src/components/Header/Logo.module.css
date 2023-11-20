@@ -1,0 +1,16 @@
+.logo__wrapper {
+  display: flex;
+  min-width: 21.5rem;
+  height: 100%;
+}
+
+.logo {
+  height: 4rem;
+  width: 12.5rem;
+}
+
+@media (max-width: 700px) {
+  .logo__wrapper {
+    min-width: 12rem;
+  }
+}
