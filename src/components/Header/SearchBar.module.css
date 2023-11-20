@@ -1,0 +1,31 @@
+.searchbar__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.searchbar {
+  transition: width 0.4s ease-in-out;
+  width: 100%;
+}
+
+.hidden {
+  width: 0;
+}
+
+.searchbar__button {
+  flex: 0 0 6rem;
+  border-radius: 100%;
+}
+
+.searchbar__button img {
+  width: 2rem;
+}
+
+@media (max-width: 700) {
+  .searchbar__button img {
+    width: 1.5rem;
+  }
+}

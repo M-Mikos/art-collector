@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  margin-bottom: 4rem;
+}
+
+.credentials {
+  font-size: 2rem;
+}

@@ -1,0 +1,31 @@
+.form__wrapper {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.form label {
+  color: var(--neutral500);
+}
+
+.form textarea {
+  background-color: transparent;
+  color: none;
+  resize: none;
+}
+
+.form__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.form__actions .submit {
+  outline: 1px solid var(--neutral500);
+}

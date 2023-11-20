@@ -1,0 +1,12 @@
+.main-image__wrap {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.main-image__wrap img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  cursor: zoom-in;
+}
