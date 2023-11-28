@@ -3,13 +3,15 @@ import { Form } from "react-router-dom";
 import Icon from "../UI/Icon";
 import classes from "./SearchBar.module.css";
 
+/**
+ * Component for displaying and controlling searchbar.
+ * @returns JSX code with searchBar component.
+ */
+
 function SearchBar() {
+  console.log("Rendering SearchBar");
   const [isSearchBar, setIsSearchBar] = useState(false);
   const searchRef = useRef(null);
-
-  const classList = isSearchBar
-    ? classes.searchbar
-    : classes.searchbar + " " + classes.hidden;
 
   const toggleSearchbar = () => {
     isSearchBar ? searchRef.current.blur() : searchRef.current.focus();
@@ -17,8 +19,11 @@ function SearchBar() {
   };
 
   return (
-    <div className={classes["searchbar__wrapper"]}>
-      <Form className={classList} action="/search">
+    <div className={classes.searchbar__wrapper}>
+      <Form
+        className={`${classes.searchbar} ${isSearchBar ? "" : classes.hidden}`}
+        action="/search"
+      >
         <input
           id="q"
           type="text"
@@ -29,7 +34,7 @@ function SearchBar() {
         />
       </Form>
       <button
-        className={classes["searchbar__button"]}
+        className={classes.searchbar__button}
         onClick={toggleSearchbar}
         aria-label="Search artworks"
       >

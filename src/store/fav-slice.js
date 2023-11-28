@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/**
+ * React Redux store slice for initializing and storing favourites state and defining its methods (reducers).
+ */
+
 const favSlice = createSlice({
   name: "favs",
   initialState: { artworks: [191, 90910, 36115] },

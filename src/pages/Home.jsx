@@ -2,11 +2,17 @@ import { useLoaderData } from "react-router-dom";
 import ArtworkList from "../components/ArtworkList/Index";
 import TitleBanner from "../components/UI/TitleBanner";
 
+/**
+ * Page component for displaying Home page.
+ * Gets artwork data from React Router Loader.
+ * 
+ * @returns React fragment with TitleBanner and ArtworkList React components
+ */
+
 function Home() {
-  const data = useLoaderData();
-  const items = data.items;
-  const message = data.message;
-  const hasMultiplePages = data.hasMultiplePages;
+  console.log(`Rendering Home Page`);
+  const { items, message, hasMultiplePages } = useLoaderData();
+
   return (
     <>
       <TitleBanner

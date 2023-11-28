@@ -2,6 +2,14 @@ import { useState } from "react";
 import { ARTWORKS_URL_LARGE_SUFFIX, IIIF_URL } from "../../../config";
 import classes from "./Lightbox.module.css";
 
+/**
+ * Component for displaying artwork image lightbox with zoom feature activated on click.
+ *
+ * @param {Object} props
+ * @param {string} props.id artwork ID
+ * @returns JSX code with Details component.
+ */
+
 function Lightbox(props) {
   const [imagePositionX, setImagePositionX] = useState();
   const [imagePositionY, setImagePositionY] = useState();
@@ -33,13 +41,13 @@ function Lightbox(props) {
   };
 
   return (
-    <div className={classes["lightbox__wrapper"]}>
+    <div className={classes.lightbox__wrapper}>
       <img
         src={`${IIIF_URL}/${props.imgId}${ARTWORKS_URL_LARGE_SUFFIX}`}
         className={
           isZoomed
-            ? `${classes["lightbox__image"]} ${classes.zoom}`
-            : classes["lightbox__image"]
+            ? `${classes.lightbox__image} ${classes.zoom}`
+            : classes.lightbox__image
         }
         style={
           isZoomed

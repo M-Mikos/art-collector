@@ -1,51 +1,35 @@
+import React from "react";
 import { useLoaderData } from "react-router-dom";
-import CollectionsList from "../components/CollectionsList/Index.jsx";
-import store from "../store";
-import getArtworksById from "../helpers/getArtworksById.js";
-import TitleBanner from "../components/UI/TitleBanner.jsx";
 import { useSelector } from "react-redux";
+import CollectionsList from "../components/CollectionsList/Index.jsx";
+import TitleBanner from "../components/UI/TitleBanner.jsx";
+
+/**
+ * Page component for displaying Collections page.
+ * Gets artwork data from React Router Loader.
+ * Gets collections data from React Redux state.
+ *
+ * @returns React fragment with TitleBanner and CollectionsList React components
+ */
 
 function Collections() {
-  const thumbnails = useLoaderData();
+  console.log("rendering Collections Page");
+  const collections = useLoaderData();
   const collectionsQuantity = useSelector(
     (state) => state.collections.collections.length
   );
 
+  const subtitle =
+    collectionsQuantity === 1
+      ? `You have 1 collection.`
+      : `You have ${collectionsQuantity} collections.`;
+
   return (
     <>
-      <TitleBanner
-        title="Collections"
-        subtitle={
-          collectionsQuantity === 1
-            ? `You have 1 collection.`
-            : `You have ${collectionsQuantity} collections.`
-        }
-      />
-      <CollectionsList thumbnails={thumbnails} />
+      <TitleBanner title="Collections" subtitle={subtitle} />
+      <CollectionsList thumbnails={collections} />
     </>
   );
 }
 
 export default Collections;
-
-export async function loader() {
-  try {
-    const collections = store.getState().collections.collections;
-    const artworksIdList = collections.map((collection) => {
-      return collection.artworks[0] ? collection.artworks[0] : null;
-    });
-
-    const artworks = await getArtworksById(artworksIdList);
-    const thumbnailsSources = artworks.map((obj, i) => {
-      if (!obj) {
-        return { id: collections[i].id, src: null };
-      } else {
-        return { id: collections[i].id, src: obj["image_id"] };
-      }
-    });
-
-    return thumbnailsSources;
-  } catch (error) {
-    return [error.message];
-  }
-}

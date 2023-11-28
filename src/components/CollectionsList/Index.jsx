@@ -1,11 +1,20 @@
-import CollectionItem from "./CollectionItem";
 import { useDispatch, useSelector } from "react-redux";
-
-import classes from "./Index.module.css";
 import { uiActions } from "../../store/ui-slice";
+import CollectionItem from "./CollectionItem";
 import Icon from "../UI/Icon";
+import classes from "./Index.module.css";
+
+/**
+ * Component for displaying list of collection thumbnails.
+ * Gets collections data from React Redux store
+ * @param {Object} props
+ * @param {Object} props.thumbnails collections thubnails data
+ * @returns JSX code with CollectionsList component.
+ */
 
 function CollectionsList(props) {
+  console.log("Rendering CollectionList");
+  const { thumbnails } = props;
   const dispatch = useDispatch();
   const collections = useSelector((state) => state.collections.collections);
 
@@ -23,18 +32,14 @@ function CollectionsList(props) {
       </div>
 
       <ul className={classes["items-grid"]}>
-        {collections.map((collection) => {
-          return (
-            <li key={collection.id} className={classes.item}>
-              <CollectionItem
-                data={collection}
-                thumbnail={
-                  props.thumbnails.filter((obj) => obj.id === collection.id)[0]
-                }
-              />
-            </li>
-          );
-        })}
+        {collections.map((collection) => (
+          <li key={collection.id} className={classes.item}>
+            <CollectionItem
+              data={collection}
+              thumbnail={thumbnails.find((obj) => obj.id === collection.id)}
+            />
+          </li>
+        ))}
       </ul>
     </>
   );

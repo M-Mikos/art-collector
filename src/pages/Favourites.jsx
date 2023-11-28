@@ -1,32 +1,36 @@
-import { useLoaderData } from "react-router-dom";
-import ArtworkList from "../components/ArtworkList/Index";
-
-import TitleBanner from "../components/UI/TitleBanner";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import loadArtworksFromFavourites from "../helpers/loadArtworksFromFavourites";
+import { useLoaderData } from "react-router-dom";
+import { useSelector } from "react-redux";
+import ArtworkList from "../components/ArtworkList/Index";
+import TitleBanner from "../components/UI/TitleBanner";
+
+/**
+ * Page component for displaying Favourites page.
+ * Gets artwork data from React Router Loader.
+ * UseEffect manages UI state on store change (demoving favourites).
+ *
+ * @returns React fragment with TitleBanner and ArtworkList React components
+ */
 
 function Favourites() {
-  const data = useLoaderData();
-  const [items, setItems] = useState(data.items);
-  const [message, setMessage] = useState(data.message);
+  console.log("rendering Favourites Page");
+  const { items: initialItems, message: initialMessage } = useLoaderData();
+  const [items, setItems] = useState(initialItems);
+  const [message, setMessage] = useState(initialMessage);
 
-  const favs = useSelector((state) => state.fav.artworks);
+  const favourites = useSelector((state) => state.fav.artworks);
 
-  // Updating favourities list on toggle fav
   useEffect(() => {
-    const newItems = items.filter((item) => favs.includes(item.id));
+    const newItems = items.filter((item) => favourites.includes(item.id));
     setItems(newItems);
     newItems.length === 0 && setMessage("No favourite artworks.");
-  }, [favs]);
-
-  console.log("favs", data);
+  }, [favourites, initialItems]);
 
   return (
     <>
       <TitleBanner
         title="Favourites"
-        subtitle={`Number of artworks: ${favs.length}`}
+        subtitle={`Number of artworks: ${favourites.length}`}
       />
       <ArtworkList items={items} message={message} infiniteScroll={false} />
     </>
@@ -34,13 +38,3 @@ function Favourites() {
 }
 
 export default Favourites;
-
-export async function loader() {
-  try {
-    const items = await loadArtworksFromFavourites();
-    console.log("fav loader", items);
-    return { items, message: "" };
-  } catch (error) {
-    return { items: [], message: error.message };
-  }
-}

@@ -1,6 +1,12 @@
 import classes from "./Index.module.css";
 
+/**
+ * Presentation component for displaying application footer.
+ * @returns JSX code with footer component.
+ */
+
 function Footer() {
+  console.log("Rendering Footer");
   return (
     <footer>
       <span>

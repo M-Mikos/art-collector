@@ -2,7 +2,15 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import classes from "./CollectionsNamesList.module.css";
 
+/**
+ * Presentation component for displaying collection names list.
+ * Gets collections data from React Redux state.
+ *
+ * @returns JSX code with sidebar component.
+ */
+
 function CollectionsNamesList() {
+  console.log("Rendering CollectionsNamesList");
   const collections = useSelector((state) => state.collections.collections);
 
   return (

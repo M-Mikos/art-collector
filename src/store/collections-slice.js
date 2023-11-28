@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import genID from "../helpers/genID";
 
+/**
+ * React Redux store slice for initializing and storing collections state and defining its methods (reducers).
+ */
+
 const collectionsSlice = createSlice({
   name: "collections",
   initialState: {

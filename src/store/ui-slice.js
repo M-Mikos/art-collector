@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/**
+ * React Redux store slice for initializing and storing cross-aplication interface state and defining its methods (reducers).
+ */
+
 const uiSlice = createSlice({
   name: "ui",
   initialState: {

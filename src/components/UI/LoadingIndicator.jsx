@@ -1,6 +1,13 @@
 import classes from "./LoadingIndicator.module.css";
 
+/**
+ * Presentation component for displaying animated loading indicator.
+ *
+ * @returns JSX code with loading indicator element.
+ */
+
 function LoadingIndicator() {
+  console.log("Rendering LoadingIndicator Component");
   return (
     <div className={classes["loading__wrapper"]}>
       <div className={classes["loading__outer"]}>

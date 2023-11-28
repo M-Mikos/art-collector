@@ -4,6 +4,11 @@ import { RouterProvider } from "react-router-dom";
 
 import store, { saveToLocalStorage } from "./store";
 
+/**
+ * Function initialize application routes, application provider (React Redux store) and subscribe function.
+ * @returns 
+ */
+
 function App() {
   // Save current state in local storage
   const subscribeHandler = () => {

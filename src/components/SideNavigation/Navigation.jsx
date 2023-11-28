@@ -1,10 +1,17 @@
-import { NavLink } from "react-router-dom";
-import Icon from "../UI/Icon";
-import classes from "./Navigation.module.css";
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
+import NavigationLink from "./NavigationLink";
+import NavigationButton from "./NavigationButton";
+import classes from "./Navigation.module.css";
+
+/**
+ * Component for displaying sidebar navigation.
+ *
+ * @returns JSX code with sidebar navigation.
+ */
 
 function Navigation() {
+  console.log("Rendering Navigation");
   const dispatch = useDispatch();
 
   const toggleAdd = () => {
@@ -17,35 +24,22 @@ function Navigation() {
 
   return (
     <nav className={classes["site-nav"]}>
-      <NavLink
-        className={({ isActive }) => (isActive ? classes.active : "")}
-        to="/"
-        end
-      >
-        <Icon src="/home-line.svg" />
-        <span>Home</span>
-      </NavLink>
-      <NavLink
-        className={({ isActive }) => (isActive ? classes.active : "")}
+      <NavigationLink to="/" iconSrc="/home-line.svg" label="Home" />
+      <NavigationLink
         to="/favourites"
-        end
-      >
-        <Icon src="/heart-line.svg" />
-        <span>Favourites</span>
-      </NavLink>
-      <NavLink
-        className={({ isActive }) => (isActive ? classes.active : "")}
+        iconSrc="/heart-line.svg"
+        label="Favourites"
+      />
+      <NavigationLink
         to="/collections"
-        end
-      >
-        <Icon src="/image-2-line.svg" />
-        <span>Collections</span>
-      </NavLink>
-
-      <button className={classes.button} onClick={toggleAdd}>
-        <Icon src="/add-line.svg" />
-        <span>Create</span>
-      </button>
+        iconSrc="/image-2-line.svg"
+        label="Collections"
+      />
+      <NavigationButton
+        onClick={toggleAdd}
+        iconSrc="/add-line.svg"
+        label="Create"
+      />
     </nav>
   );
 }

@@ -1,0 +1,14 @@
+.button {
+  border-left: 3px solid transparent;
+}
+
+@media (max-width: 700px) {
+  .button {
+    flex: 1;
+    border: none;
+    border-bottom: 3px solid transparent;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0.8rem;
+  }
+}

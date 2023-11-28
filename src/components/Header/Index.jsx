@@ -1,8 +1,14 @@
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-
 import classes from "./Index.module.css";
+
+/**
+ * Presentation component for displaying application header
+ * @returns JSX code with header component.
+ */
+
 function Header() {
+  console.log("Rendering Header");
   return (
     <header className={classes.header}>
       <Logo />

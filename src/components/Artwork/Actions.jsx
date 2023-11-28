@@ -1,15 +1,27 @@
+import { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { favActions } from "../../store/fav-slice";
-import { collectionsActions } from "../../store/collections-slice";
-import { useRef, useState } from "react";
-import Icon from "../UI/Icon";
-
-import classes from "./Actions.module.css";
-import useNotification from "../../hooks/useNotification";
-import { uiActions } from "../../store/ui-slice";
 import { useLocation, useParams } from "react-router-dom";
+import { collectionsActions } from "../../store/collections-slice";
+import { favActions } from "../../store/fav-slice";
+import { uiActions } from "../../store/ui-slice";
+import useNotification from "../../hooks/useNotification";
+import Icon from "../UI/Icon";
+import classes from "./Actions.module.css";
+
+/**
+ * Component for displaying and controlling add to favourites and add to collections.
+ * Component is used for adding or removing artwork from selected collection or favourites list.
+ * Component dispatches modification on collections and favourites data in React Redux store.
+ * Component is calling a notification after dispatching an action.
+ * Gets favourites and collection list data from React Redux store.
+ *
+ * @param {Object} props
+ * @param {string} props.id artwork ID
+ * @returns JSX code with Details component.
+ */
 
 function Actions(props) {
+  const { id } = props.id;
   const dispatch = useDispatch();
   const favList = useSelector((state) => state.fav.artworks);
   const collections = useSelector((state) => state.collections.collections);
@@ -18,10 +30,13 @@ function Actions(props) {
   const [showNotification] = useNotification();
   const location = useLocation();
 
-  // set initial button state for default first selection option
-  const [isInCollection, setIsInCollection] = useState(
-    collections[0] ? collections[0].artworks.includes(props.id) : false
-  );
+  const [isInCollection, setIsInCollection] = useState(false);
+
+  useEffect(() => {
+    setIsInCollection(
+      collections[0] ? collections[0].artworks.includes(id) : false
+    );
+  }, [collections, id]);
 
   const toggleAdd = () => {
     dispatch(
@@ -32,22 +47,21 @@ function Actions(props) {
   };
 
   const isFav = () => {
-    return favList.includes(props.id);
+    return favList.includes(id);
   };
 
   const checkIfIsInCollection = (collectionId) => {
     return collections
       .find((item) => item.id === collectionId)
-      .artworks.includes(props.id);
+      .artworks.includes(id);
   };
 
   const toggleFavHadler = () => {
-    // Notification
     isFav()
       ? showNotification("Removed from favourites")
       : showNotification("Added to favourites");
 
-    dispatch(favActions.toggle(props.id));
+    dispatch(favActions.toggle(id));
   };
 
   const changeHandler = () => {
@@ -58,13 +72,11 @@ function Actions(props) {
   const toggleCollectionHadler = (event) => {
     event.preventDefault();
 
-    // select collection ID by form or by path
     const collectionId =
       event._reactName === "onSubmit"
         ? collectionRef.current.value
         : params.collectionId;
 
-    // Notification
     checkIfIsInCollection(collectionId)
       ? showNotification("Removed from collection")
       : showNotification("Added to collection");
@@ -72,14 +84,14 @@ function Actions(props) {
     dispatch(
       collectionsActions.toggleArtwork({
         collectionId,
-        artworkId: props.id,
+        artworkId: id,
       })
     );
 
     setIsInCollection((prevState) => !prevState);
   };
 
-  const selectCollection = (
+  const renderSelectCollection = (
     <>
       <select
         name="collection"
@@ -109,7 +121,7 @@ function Actions(props) {
     </>
   );
 
-  const addCollection = (
+  const renderAddCollection = (
     <>
       <button onClick={toggleAdd}>
         <div className={classes["btn--collection"]}>
@@ -139,7 +151,9 @@ function Actions(props) {
             className={classes["select-collection__bar"]}
             onSubmit={toggleCollectionHadler}
           >
-            {collections.length !== 0 ? selectCollection : addCollection}
+            {collections.length !== 0
+              ? renderSelectCollection
+              : renderAddCollection}
           </form>
         </div>
       )}

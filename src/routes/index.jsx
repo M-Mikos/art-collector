@@ -6,12 +6,12 @@ import Favourites from "../pages/Favourites";
 import Collections from "../pages/Collections";
 import CollectionDetails from "../pages/CollectionDetails";
 import ArtworkPage from "../pages/ArtworkPage";
-import { loader as searchLoader } from "../pages/SearchResults";
-import { loader as favLoader } from "../pages/Favourites";
-import { loader as collectionDetailsLoader } from "../pages/CollectionDetails";
-import { loader as collectionListLoader } from "../pages/Collections";
-import { loader as artworkLoader } from "../components/Artwork/Index";
 import SearchResults from "../pages/SearchResults";
+import searchResultsLoader from "../pages/loaders/searchResultsLoader";
+import favouritesLoader from "../pages/loaders/favouritesLoader";
+import collectionDetailsLoader from "../pages/loaders/collectionDetailsLoader";
+import collectionListLoader from "../pages/loaders/collectionListLoader";
+import artworkLoader from "../pages/loaders/artworkLoader";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-
-        loader: searchLoader,
+        loader: searchResultsLoader,
       },
 
       {
@@ -35,13 +34,13 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchResults />,
-        loader: searchLoader,
+        loader: searchResultsLoader,
       },
 
       {
         path: "/favourites",
         element: <Favourites />,
-        loader: favLoader,
+        loader: favouritesLoader,
       },
       {
         path: "/collections",

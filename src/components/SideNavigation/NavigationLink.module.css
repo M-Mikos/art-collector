@@ -1,0 +1,33 @@
+.active {
+  opacity: 1;
+  border-left: 3px solid #fff;
+}
+
+.navlink .active {
+  color: var(--neutral50);
+}
+
+.navlink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100%;
+  color: var(--neutral50);
+  opacity: 0.6;
+  border-left: 3px solid transparent;
+  padding: 1rem 2rem;
+
+  transition: opacity 0.15s;
+}
+
+.navlink :hover {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .active {
+    border: none;
+    border-bottom: 3px solid #fff;
+  }
+}
