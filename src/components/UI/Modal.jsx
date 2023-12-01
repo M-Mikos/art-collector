@@ -13,7 +13,6 @@ import classes from "./Modal.module.css";
  */
 
 function Modal(props) {
-  console.log("Rendering Modal Component");
   const { children } = props;
   const dispatch = useDispatch();
 

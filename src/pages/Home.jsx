@@ -1,25 +1,23 @@
 import { useLoaderData } from "react-router-dom";
 import ArtworkList from "../components/ArtworkList/Index";
 import TitleBanner from "../components/UI/TitleBanner";
+import { WELCOME_BANNER_CONTENT, WELCOME_BANNER_TITLE } from "../../config";
 
 /**
  * Page component for displaying Home page.
  * Gets artwork data from React Router Loader.
- * 
+ *
  * @returns React fragment with TitleBanner and ArtworkList React components
  */
 
 function Home() {
-  console.log(`Rendering Home Page`);
   const { items, message, hasMultiplePages } = useLoaderData();
 
   return (
     <>
       <TitleBanner
-        title={<span>Welcome, Art&nbsp;Collector</span>}
-        subtitle={
-          "Create your own art collections, choose your favorite works. Explore the extraordinary fine art resources gathered by The Art Institute of Chicago."
-        }
+        title={WELCOME_BANNER_TITLE}
+        subtitle={WELCOME_BANNER_CONTENT}
       />
       <ArtworkList
         items={items}

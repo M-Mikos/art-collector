@@ -7,7 +7,6 @@ import classes from "./Logo.module.css";
  */
 
 function Logo() {
-  console.log("Rendering Logo");
   return (
     <div className={classes.logo__wrapper}>
       <Link to="/" aria-label="Return to Homepage">

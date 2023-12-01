@@ -1,3 +1,4 @@
+import { EMPTY_FAVOURITES_LIST_MESSAGE } from "../../config";
 import store from "../store";
 import getArtworksById from "./getArtworksById";
 
@@ -11,10 +12,11 @@ async function loadArtworksFromFavourites() {
   const list = store.getState().fav.artworks;
 
   if (list.length === 0) {
-    throw new Error("No favourite artworks.");
+    throw new Error(EMPTY_FAVOURITES_LIST_MESSAGE);
   }
 
   const items = await getArtworksById(list);
+
   return items;
 }
 

@@ -13,18 +13,19 @@ import classes from "./NavigationLink.module.css";
  */
 
 function NavigationLink(props) {
-  console.log("Rendering NavigationLink");
   const { to, iconSrc, label } = props;
 
   return (
-    <NavLink
-      className={({ isActive }) => (isActive ? `${classes.active} ` : "") + classes.navlink}
-      to={to}
-      end
-    >
-      <Icon src={iconSrc} />
-      <span>{label}</span>
-    </NavLink>
+    <div className={classes.navlink}>
+      <NavLink
+        className={({ isActive }) => (isActive ? classes.active : "")}
+        to={to}
+        end
+      >
+        <Icon src={iconSrc} />
+        <span>{label}</span>
+      </NavLink>
+    </div>
   );
 }
 

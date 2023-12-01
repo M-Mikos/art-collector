@@ -12,7 +12,6 @@ import classes from "./Banner.module.css";
  */
 
 function Banner(props) {
-  console.log("Rendering Banner");
   const { thumbnail, description, title, id, count } = props;
   return (
     <div

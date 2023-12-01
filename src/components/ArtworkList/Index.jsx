@@ -1,9 +1,14 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import debounce from "../../helpers/debounce";
 import useLoadMoreSearchResults from "../../hooks/useLoadMoreSearchResults";
 import ArtworkThumbnail from "./ArtworkThumbnail";
 import LoadingIndicator from "../UI/LoadingIndicator";
+import {
+  INFINITE_SCROLL_DEBOUNCE_TIME,
+  NO_MORE_RESULTS_MESSAGE,
+} from "../../../config";
 import classes from "./Index.module.css";
 
 /**
@@ -19,38 +24,24 @@ import classes from "./Index.module.css";
  */
 
 function ArtworkList(props) {
-  console.log("Rendering List");
   const { infiniteScroll, hasMultiplePages, message } = props;
   const [searchParams] = useSearchParams();
-  const isBottomHit = useSelector(
-    (state) => state.ui.contentContainerBottomHit
-  );
-
-  const [items, loadItems, nextPageNumber, loading] = useLoadMoreSearchResults(
-    props.items,
-    searchParams
-  );
+  const onBottom = useSelector((state) => state.ui.onBottom);
+  const [items, loadItems, nextPageNumber, loading, errorMessage] =
+    useLoadMoreSearchResults(props.items, searchParams);
 
   // Infinite scrool
-
   useEffect(() => {
     if (
+      onBottom &&
       infiniteScroll &&
-      isBottomHit &&
       hasMultiplePages &&
       nextPageNumber &&
       !loading
     ) {
-      loadItems(nextPageNumber);
+      debounce(loadItems(nextPageNumber), INFINITE_SCROLL_DEBOUNCE_TIME);
     }
-  }, [
-    isBottomHit,
-    infiniteScroll,
-    hasMultiplePages,
-    nextPageNumber,
-    loading,
-    loadItems,
-  ]);
+  }, [onBottom]);
 
   const renderArtworkList = () => (
     <ul className={classes["items-grid"]}>
@@ -76,10 +67,11 @@ function ArtworkList(props) {
     <>
       {renderArtworkList()}
       {loading && <LoadingIndicator />}
-      {(props.hasMultiplePages || nextPageNumber) &&
-        !props.message &&
-        renderMessage("No more results.")}
-      {props.message && renderMessage(message)}
+      {(!hasMultiplePages || !nextPageNumber) &&
+        !message &&
+        renderMessage(NO_MORE_RESULTS_MESSAGE)}
+      {message && renderMessage(message)}
+      {errorMessage && renderMessage(errorMessage)}
     </>
   );
 }

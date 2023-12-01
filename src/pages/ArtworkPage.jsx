@@ -10,7 +10,6 @@ import Artwork from "../components/Artwork/Index";
  */
 
 function ArtworkPage() {
-  console.log("rendering Artwork Page");
   const data = useLoaderData();
   const location = useLocation();
 

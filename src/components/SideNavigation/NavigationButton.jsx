@@ -12,7 +12,6 @@ import classes from "./NavigationButton.module.css";
  */
 
 function NavigationButton(props) {
-  console.log("Rendering NavigationButton");
   const { onClick, iconSrc, label } = props;
   return (
     <button className={classes.button} onClick={onClick}>

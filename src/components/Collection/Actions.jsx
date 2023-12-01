@@ -6,6 +6,7 @@ import useNotification from "../../hooks/useNotification";
 import Icon from "../UI/Icon";
 
 import classes from "./Actions.module.css";
+import { DELETE_COLLECTION_MESSAGE } from "../../../config";
 
 /**
  * Presentational component for displaying collection banner.
@@ -17,8 +18,7 @@ import classes from "./Actions.module.css";
  */
 
 function Actions(props) {
-  console.log("Rendering Actions");
-  const { id, title, description } = props;
+  const { id, currentTitle: title, currentDescription: description } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { collectionId } = useParams();
@@ -37,7 +37,7 @@ function Actions(props) {
 
   const deleteHandler = () => {
     dispatch(collectionsActions.remove(id));
-    showNotification("Collection deleted");
+    showNotification(DELETE_COLLECTION_MESSAGE);
     collectionId && navigate(`/collections`);
   };
 

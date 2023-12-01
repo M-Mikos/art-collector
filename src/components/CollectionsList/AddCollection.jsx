@@ -1,9 +1,14 @@
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { collectionsActions } from "../../store/collections-slice";
 import { uiActions } from "../../store/ui-slice";
 import useNotification from "../../hooks/useNotification";
 import classes from "./AddCollection.module.css";
+import {
+  ADD_COLLECTION_FOMR_TITLE,
+  ADD_COLLECTION_MESSAGE,
+  EDIT_COLLECTION_FOMR_TITLE,
+} from "../../../config";
 
 /**
  * Component for displaying and controlling add collection form.
@@ -18,8 +23,8 @@ import classes from "./AddCollection.module.css";
  */
 
 function AddCollection(props) {
-  console.log("Rendering AddCollection");
   const { mode, currentTitle, currentDescription, collectionId } = props;
+
   const dispatch = useDispatch();
   const [showNotification] = useNotification();
   const titleRef = useRef();
@@ -39,7 +44,7 @@ function AddCollection(props) {
 
     if (mode === "add") {
       dispatch(collectionsActions.create(collectionData));
-      showNotification("New collection added");
+      showNotification(ADD_COLLECTION_MESSAGE, `/collections`);
     }
 
     if (mode === "edit") {
@@ -49,7 +54,7 @@ function AddCollection(props) {
           ...collectionData,
         })
       );
-      showNotification("Collection updated");
+      showNotification("Collection updated", `/collections/${collectionId}`);
     }
 
     toggleModal();
@@ -60,7 +65,11 @@ function AddCollection(props) {
 
   return (
     <div className={classes.form__wrapper}>
-      <h2>{mode === "add" ? "Create new collection" : "Edit collection"}</h2>
+      <h2>
+        {mode === "add"
+          ? ADD_COLLECTION_FOMR_TITLE
+          : EDIT_COLLECTION_FOMR_TITLE}
+      </h2>
       <form onSubmit={submitHandler} className={classes.form}>
         <div>
           <label htmlFor="title">Title</label>
@@ -83,7 +92,7 @@ function AddCollection(props) {
             defaultValue={currentDescription}
           />
         </div>
-        <div className={classes["form__actions"]}>
+        <div className={classes.form__actions}>
           <button type="submit" className={classes.submit}>
             Submit
           </button>

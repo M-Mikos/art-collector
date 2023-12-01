@@ -7,12 +7,11 @@ import TitleBanner from "../components/UI/TitleBanner";
  * Page component for displaying Search Results page.
  * Gets artwork data from React Router Loader.
  * Gets params data from useSearchParams to pass down search params.
- * 
+ *
  * @returns React fragment with TitleBanner and ArtworkList React components
  */
 
 function SearchResults() {
-  console.log(`Rendering SearchResultsPage`);
   const { items, message, hasMultiplePages, itemsQuantity } = useLoaderData();
   const [searchParams] = useSearchParams();
 

@@ -15,10 +15,7 @@ import classes from "./ArtworkThumbnail.module.css";
  */
 
 function ArtworkThumbnail(props) {
-  console.log("Rendering Artwork Thumbnail");
   const { id, imageId, title, artistTitle, dateDisplay } = props;
-
-  console.log(classes);
 
   const renderImage = () => {
     if (imageId) {

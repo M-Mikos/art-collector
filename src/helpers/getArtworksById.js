@@ -10,7 +10,9 @@ import artworksAPI from "../../axiosSetup";
 
 async function getArtworksById(idArray) {
   // Convert ID array to string for HTTP request
-  const idString = idArray.filter((id) => id !== null).join(",");
+  const filteredArray = idArray.filter((id) => id !== null);
+
+  const idString = filteredArray.join(",");
 
   // Get detailed artworks data
   const response = await artworksAPI.get(
@@ -18,8 +20,8 @@ async function getArtworksById(idArray) {
   );
 
   //Fix unordered API response (for correct thumbnais in collection list )
-  const sortedItems = idArray.map((id) => {
-    return response.data.data.filter((item) => item.id === id)[0];
+  const sortedItems = filteredArray.map((id) => {
+    if (id) return response.data.data.filter((item) => item.id === id)[0];
   });
 
   return sortedItems;

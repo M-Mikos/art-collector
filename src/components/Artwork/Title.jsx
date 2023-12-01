@@ -12,7 +12,6 @@ import classes from "./Title.module.css";
  */
 
 function Title(props) {
-  console.log("Rendering Title");
   const { title, artist, date } = props;
   return (
     <div className={classes.wrapper}>

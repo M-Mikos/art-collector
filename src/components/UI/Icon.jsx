@@ -10,7 +10,6 @@ import classes from "./Icon.module.css";
  */
 
 function Icon(props) {
-  console.log("Rendering Icon Component");
   const { alt, src } = props;
   return (
     <div className={classes["icon__wrap"]}>

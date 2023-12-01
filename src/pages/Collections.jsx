@@ -13,7 +13,6 @@ import TitleBanner from "../components/UI/TitleBanner.jsx";
  */
 
 function Collections() {
-  console.log("rendering Collections Page");
   const collections = useLoaderData();
   const collectionsQuantity = useSelector(
     (state) => state.collections.collections.length

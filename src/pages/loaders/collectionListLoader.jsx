@@ -11,7 +11,7 @@ async function collectionListLoader() {
     const artworks = await getArtworksById(artworksIdList);
     const thumbnailsSources = artworks.map((obj, i) => ({
       id: collections[i].id,
-      src: obj ? obj["image_id"] : null,
+      src: obj ? obj.image_id : null,
     }));
 
     return thumbnailsSources;

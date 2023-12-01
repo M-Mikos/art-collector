@@ -11,7 +11,6 @@ import ArtworkList from "../ArtworkList/Index";
  */
 
 function Collection(props) {
-  console.log("Rendering Collection");
   const { collection, items, message } = props;
   const thumbnail = items[0] ? items[0]["image_id"] : null;
 

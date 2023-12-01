@@ -16,7 +16,6 @@ import classes from "./Index.module.css";
  */
 
 function Artwork(props) {
-  console.log("Rendering Artwork");
   const {
     id,
     title,

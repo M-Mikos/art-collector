@@ -14,8 +14,8 @@ function useNotification() {
   const dispatch = useDispatch();
   const [timeoutID, setTimeoutId] = useState();
 
-  const showNotification = (message) => {
-    dispatch(uiActions.showNotification(message));
+  const showNotification = (message, link) => {
+    dispatch(uiActions.showNotification({ message, link }));
 
     // End prevous notification
     clearTimeout(timeoutID);

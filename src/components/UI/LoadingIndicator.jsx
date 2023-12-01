@@ -7,7 +7,6 @@ import classes from "./LoadingIndicator.module.css";
  */
 
 function LoadingIndicator() {
-  console.log("Rendering LoadingIndicator Component");
   return (
     <div className={classes["loading__wrapper"]}>
       <div className={classes["loading__outer"]}>

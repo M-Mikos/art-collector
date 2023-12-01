@@ -10,7 +10,6 @@ import classes from "./CollectionsNamesList.module.css";
  */
 
 function CollectionsNamesList() {
-  console.log("Rendering CollectionsNamesList");
   const collections = useSelector((state) => state.collections.collections);
 
   return (

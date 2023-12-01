@@ -8,6 +8,7 @@
   .site-nav {
     flex-direction: row;
     font-size: 1.3rem;
+    height: 100%;
   }
 
   .site-nav a {

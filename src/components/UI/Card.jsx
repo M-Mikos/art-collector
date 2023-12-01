@@ -9,7 +9,6 @@ import classes from "./Card.module.css";
  */
 
 function Card(props) {
-  console.log("Rendering Card Component");
   const { children } = props;
 
   return <div className={classes.card}>{children}</div>;

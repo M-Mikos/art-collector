@@ -14,38 +14,52 @@ function useLoadMoreSearchResults(prevItems, searchParams) {
   const [items, setItems] = useState(prevItems);
   const [nextPageNumber, setNextPageNumber] = useState(2);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     setItems(prevItems);
   }, [prevItems]);
 
   const loadItems = async (pageNumber) => {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    // Get items list
-    const list = await artworksAPI.get(
-      `/search?${searchParams}&page=${pageNumber}`
-    );
+      // Get items list
+      const list = await artworksAPI.get(
+        `/search?${searchParams}&page=${pageNumber}`
+      );
 
-    // Get items details
-    const itemsList = await getArtworksById(
-      list.data.data.map((item) => item.id)
-    );
+      const prevItemsIDs = prevItems.map((item) => item.id);
+      const newItemsIDs = list.data.data.map((item) => item.id);
 
-    // Update items state
-    setItems((prevItems) => [...prevItems, ...itemsList]);
+      // Remove duplicated items
+      const uniqueNewItemsIDs = newItemsIDs.filter(
+        (newItemID) =>
+          !prevItemsIDs.find((prevItemID) => prevItemID === newItemID)
+      );
 
-    // Check for last page
-    const totalPages = list.data.pagination["total_pages"];
+      // Get items details
+      const newItems = await getArtworksById(uniqueNewItemsIDs);
 
-    pageNumber !== totalPages
-      ? setNextPageNumber((pageNumber) => pageNumber + 1)
-      : setNextPageNumber(null);
+      // Update items state
+      setItems((prevItems) => [...prevItems, ...newItems]);
 
-    setLoading(false);
+      // Check for last page
+      const totalPages = list.data.pagination.total_pages;
+
+      pageNumber !== totalPages
+        ? setNextPageNumber((pageNumber) => pageNumber + 1)
+        : setNextPageNumber(null);
+
+      setLoading(false);
+      setErrorMessage("");
+    } catch (error) {
+      setErrorMessage(error.message);
+      setLoading(false);
+    }
   };
 
-  return [items, loadItems, nextPageNumber, loading];
+  return [items, loadItems, nextPageNumber, loading, errorMessage];
 }
 
 export default useLoadMoreSearchResults;

@@ -9,14 +9,13 @@ import classes from "./Index.module.css";
  */
 
 function ErrorLayout() {
-  console.log("Rendering ErrorLayout");
   return (
     <div className={classes.error__container}>
       <div className={classes.error__header}>
         <Header />
       </div>
       <div className={classes.error__main}>
-        <div className={classes.error__img__wrap}>
+        <div className={classes.error__img}>
           <img src="/404.svg" />
         </div>
         <h1>Page could not be found.</h1>

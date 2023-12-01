@@ -20,7 +20,6 @@ import classes from "./Index.module.css";
  */
 
 function RootLayout() {
-  console.log("Rendering RootLayout");
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -30,15 +29,19 @@ function RootLayout() {
   const notificationMessage = useSelector(
     (state) => state.ui.popupNotification.message
   );
+  const notificationLink = useSelector(
+    (state) => state.ui.popupNotification.link
+  );
   const isModal = useSelector((state) => state.ui.modal.display);
   const modalData = useSelector((state) => state.ui.modal.data);
+  const onBottom = useSelector((state) => state.ui.onBottom);
 
   const scrollHandler = (element) => {
-    const onBottom =
+    const bottomHit =
       element.target.scrollHeight - element.target.scrollTop <=
       element.target.clientHeight + 1;
-
-    dispatch(uiActions.setContentBottomHit(onBottom));
+    if (bottomHit) dispatch(uiActions.setOnBottomTrue());
+    if (!bottomHit && onBottom === true) dispatch(uiActions.setOnBottomFalse());
   };
 
   return (
@@ -57,7 +60,9 @@ function RootLayout() {
         <Footer />
       </div>
       {isNotification && (
-        <PopupNotification>{notificationMessage}</PopupNotification>
+        <PopupNotification link={notificationLink}>
+          {notificationMessage}
+        </PopupNotification>
       )}
       {isModal && (
         <Modal>

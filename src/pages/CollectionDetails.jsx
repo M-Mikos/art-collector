@@ -13,7 +13,6 @@ import Collection from "../components/Collection/Index";
  */
 
 function CollectionDetails() {
-  console.log("rendering Collection Details Page");
   const { collectionId } = useParams();
   const collections = useSelector((state) => state.collections.collections);
   const loaderData = useLoaderData();

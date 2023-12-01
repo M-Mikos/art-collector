@@ -10,7 +10,6 @@ import classes from "./TitleBanner.module.css";
  */
 
 function TitleBanner(props) {
-  console.log("Rendering TitleBanner Component");
   const { title, subtitle } = props;
   return (
     <div className={classes.banner}>

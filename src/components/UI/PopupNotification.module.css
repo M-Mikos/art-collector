@@ -1,14 +1,15 @@
 .popup {
   position: fixed;
   z-index: 3;
-  width: 30rem;
+  width: 24rem;
   padding: 1.5rem 3rem;
   max-height: 10rem;
   overflow-x: auto;
   margin: 1.5rem;
   bottom: 0px;
-  left: calc(50% - 15rem);
+  left: calc(50% - 12rem);
 
+  font-size: 1.4rem;
   color: #fff;
   background: var(--neutral850);
   border-radius: var(--radius-small);

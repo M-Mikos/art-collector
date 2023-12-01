@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import classes from "./PopupNotification.module.css";
+import { NavLink } from "react-router-dom";
 
 /**
  * Component for displaying notification wrapper.
@@ -10,12 +11,13 @@ import classes from "./PopupNotification.module.css";
  */
 
 function PopupNotification(props) {
-  console.log("Rendering PopupNotification Component");
-  const { children } = props;
+  const { children, link } = props;
   return ReactDOM.createPortal(
-    <div className={classes["popup__wrapper"]}>
-      <div className={classes.popup}>{children}</div>
-    </div>,
+    <NavLink to={link}>
+      <div className={classes.popup__wrapper}>
+        <div className={classes.popup}>{children}</div>
+      </div>
+    </NavLink>,
     document.getElementById("popup-notification-root")
   );
 }

@@ -1,3 +1,4 @@
+import { EMPTY_COLLECTIONS_LIST_MESSAGE } from "../../config";
 import store from "../store";
 import getArtworksById from "./getArtworksById";
 
@@ -16,7 +17,7 @@ async function loadArtworksFromCollection(requestedCollectionID) {
     ).artworks;
 
   if (list.length === 0) {
-    throw new Error("Collection is empty.");
+    throw new Error(EMPTY_COLLECTIONS_LIST_MESSAGE);
   }
 
   const items = getArtworksById(list);

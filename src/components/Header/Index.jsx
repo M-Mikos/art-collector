@@ -8,7 +8,6 @@ import classes from "./Index.module.css";
  */
 
 function Header() {
-  console.log("Rendering Header");
   return (
     <header className={classes.header}>
       <Logo />

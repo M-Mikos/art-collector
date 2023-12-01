@@ -10,7 +10,6 @@ import classes from "./Index.module.css";
  */
 
 function Sidebar() {
-  console.log("Rendering SiteNavigation");
   const isCollection =
     useSelector((state) => state.collections.collections).length > 0;
   return (

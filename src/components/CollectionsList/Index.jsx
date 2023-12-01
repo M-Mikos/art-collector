@@ -13,7 +13,6 @@ import classes from "./Index.module.css";
  */
 
 function CollectionsList(props) {
-  console.log("Rendering CollectionList");
   const { thumbnails } = props;
   const dispatch = useDispatch();
   const collections = useSelector((state) => state.collections.collections);

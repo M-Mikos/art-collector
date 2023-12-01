@@ -9,7 +9,6 @@ import classes from "./SearchBar.module.css";
  */
 
 function SearchBar() {
-  console.log("Rendering SearchBar");
   const [isSearchBar, setIsSearchBar] = useState(false);
   const searchRef = useRef(null);
 

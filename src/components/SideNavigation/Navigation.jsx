@@ -11,7 +11,6 @@ import classes from "./Navigation.module.css";
  */
 
 function Navigation() {
-  console.log("Rendering Navigation");
   const dispatch = useDispatch();
 
   const toggleAdd = () => {
@@ -38,7 +37,7 @@ function Navigation() {
       <NavigationButton
         onClick={toggleAdd}
         iconSrc="/add-line.svg"
-        label="Create"
+        label="Create collection"
       />
     </nav>
   );

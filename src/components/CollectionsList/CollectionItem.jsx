@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ARTWORKS_URL_THUMBNAIL_SUFFIX, IIIF_URL } from "../../../config";
+import {
+  ARTWORKS_URL_THUMBNAIL_SUFFIX,
+  EMPTY_COLLECTION_MESSAGE,
+  IIIF_URL,
+} from "../../../config";
 import Actions from "../Collection/Actions";
 import classes from "./CollectionItem.module.css";
 
@@ -13,7 +17,6 @@ import classes from "./CollectionItem.module.css";
  */
 
 const CollectionItem = (props) => {
-  console.log("Rendering Collection");
   const { id, title, description, artworks } = props.data;
   const [isHovered, setIsHovered] = useState(false);
 
@@ -57,15 +60,11 @@ const CollectionItem = (props) => {
         </Link>
         <p className={classes["details__info"]}>
           {artworks.length === 0
-            ? "Empty collection."
+            ? EMPTY_COLLECTION_MESSAGE
             : `Number of artworks: ${artworks.length}`}
         </p>
         <div className={actionClasses}>
-          <Actions
-            collectionId={id}
-            currentTitle={title}
-            currentDescription={description}
-          />
+          <Actions id={id} title={title} description={description} />
         </div>
       </div>
     </article>

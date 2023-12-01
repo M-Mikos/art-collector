@@ -13,7 +13,6 @@ import TitleBanner from "../components/UI/TitleBanner";
  */
 
 function Favourites() {
-  console.log("rendering Favourites Page");
   const { items: initialItems, message: initialMessage } = useLoaderData();
   const [items, setItems] = useState(initialItems);
   const [message, setMessage] = useState(initialMessage);

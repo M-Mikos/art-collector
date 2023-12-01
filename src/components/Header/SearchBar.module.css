@@ -24,7 +24,16 @@
   width: 2rem;
 }
 
-@media (max-width: 700) {
+@media (max-width: 700px) {
+  .searchbar input {
+    font-size: 1.2rem;
+  }
+
+  .searchbar__button {
+    padding: 0 0.5rem;
+    flex: 0 0 2rem;
+  }
+
   .searchbar__button img {
     width: 1.5rem;
   }

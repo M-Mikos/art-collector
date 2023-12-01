@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { ARTWORKS_URL_LARGE_SUFFIX, IIIF_URL } from "../../../config";
+import {
+  ARTWORKS_URL_LARGE_SUFFIX,
+  IIIF_URL,
+  LIGHTBOX_ZOOM_LEVEL,
+} from "../../../config";
 import classes from "./Lightbox.module.css";
 
 /**
@@ -11,6 +15,7 @@ import classes from "./Lightbox.module.css";
  */
 
 function Lightbox(props) {
+  const { imgId } = props;
   const [imagePositionX, setImagePositionX] = useState();
   const [imagePositionY, setImagePositionY] = useState();
   const [isZoomed, setIsZommed] = useState(false);
@@ -20,6 +25,7 @@ function Lightbox(props) {
   };
 
   const moveHandler = (event) => {
+    if (!isZoomed) return;
     const x = event.clientX - event.target.x;
     const y = event.clientY - event.target.y;
 
@@ -31,11 +37,20 @@ function Lightbox(props) {
       Math.floor((y / event.target.height) * 1000) / 10 -
       50
     );
-
-    if (x > event.target.width / 6 && x < (event.target.width * 5) / 6) {
+    if (
+      x > event.target.width / (LIGHTBOX_ZOOM_LEVEL * 2) &&
+      x <
+        (event.target.width * (LIGHTBOX_ZOOM_LEVEL * 2 - 1)) /
+          (LIGHTBOX_ZOOM_LEVEL * 2)
+    ) {
       setImagePositionX(percentageX);
     }
-    if (y > event.target.height / 6 && y < (event.target.height * 5) / 6) {
+    if (
+      y > event.target.height / (LIGHTBOX_ZOOM_LEVEL * 2) &&
+      y <
+        (event.target.height * (LIGHTBOX_ZOOM_LEVEL * 2 - 1)) /
+          (LIGHTBOX_ZOOM_LEVEL * 2)
+    ) {
       setImagePositionY(percentageY);
     }
   };
@@ -43,7 +58,7 @@ function Lightbox(props) {
   return (
     <div className={classes.lightbox__wrapper}>
       <img
-        src={`${IIIF_URL}/${props.imgId}${ARTWORKS_URL_LARGE_SUFFIX}`}
+        src={`${IIIF_URL}/${imgId}${ARTWORKS_URL_LARGE_SUFFIX}`}
         className={
           isZoomed
             ? `${classes.lightbox__image} ${classes.zoom}`
@@ -52,7 +67,7 @@ function Lightbox(props) {
         style={
           isZoomed
             ? {
-                transform: `scale(3) translate(${imagePositionX}%, ${imagePositionY}%)`,
+                transform: `scale(${LIGHTBOX_ZOOM_LEVEL}) translate(${imagePositionX}%, ${imagePositionY}%)`,
               }
             : { transform: `translate(0%, 0%)` }
         }

@@ -6,7 +6,6 @@ import classes from "./Index.module.css";
  */
 
 function Footer() {
-  console.log("Rendering Footer");
   return (
     <footer>
       <span>

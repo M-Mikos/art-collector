@@ -1,13 +1,4 @@
-.active {
-  opacity: 1;
-  border-left: 3px solid #fff;
-}
-
-.navlink .active {
-  color: var(--neutral50);
-}
-
-.navlink {
+.navlink a {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -21,13 +12,27 @@
   transition: opacity 0.15s;
 }
 
-.navlink :hover {
+.navlink a:hover {
   opacity: 1;
 }
 
+.navlink .active {
+  opacity: 1;
+  border-left: 3px solid #fff;
+}
+
 @media (max-width: 700px) {
-  .active {
+  .navlink .active {
     border: none;
-    border-bottom: 3px solid #fff;
+    border-bottom: 2px solid #fff;
+  }
+
+  .navlink {
+    flex: 1;
+  }
+
+  .navlink,
+  .navlink a {
+    height: 100%;
   }
 }

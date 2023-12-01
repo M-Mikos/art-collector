@@ -7,25 +7,30 @@ import { createSlice } from "@reduxjs/toolkit";
 const uiSlice = createSlice({
   name: "ui",
   initialState: {
-    popupNotification: { display: false, message: null },
+    popupNotification: { display: false, message: null, link: null },
     modal: { display: false, data: null },
-    contentContainerBottomHit: false,
+    onBottom: false,
   },
   reducers: {
     showNotification(state, action) {
       state.popupNotification.display = true;
-      state.popupNotification.message = action.payload;
+      state.popupNotification.message = action.payload.message;
+      state.popupNotification.link = action.payload.link;
     },
     hideNotification(state) {
       state.popupNotification.display = false;
       state.popupNotification.message = null;
+      state.popupNotification.link = null;
     },
     toggleModal(state, action) {
       state.modal.display = !state.modal.display;
       state.modal.data = action.payload;
     },
-    setContentBottomHit(state, action) {
-      state.contentContainerBottomHit = action.payload;
+    setOnBottomTrue(state) {
+      state.onBottom = true;
+    },
+    setOnBottomFalse(state) {
+      state.onBottom = false;
     },
   },
 });
