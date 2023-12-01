@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ARTWORKS_URL_THUMBNAIL_SUFFIX, IIIF_URL } from "../../../config";
 import { Link } from "react-router-dom";
 import Actions from "../Artwork/Actions";
@@ -14,7 +15,7 @@ import classes from "./ArtworkThumbnail.module.css";
  * @returns JSX code with  ArtworkThumbnail component.
  */
 
-function ArtworkThumbnail(props) {
+const ArtworkThumbnail = memo(function ArtworkThumbnail(props) {
   const { id, imageId, title, artistTitle, dateDisplay } = props;
 
   const renderImage = () => {
@@ -60,6 +61,6 @@ function ArtworkThumbnail(props) {
       </div>
     </article>
   );
-}
+});
 
 export default ArtworkThumbnail;

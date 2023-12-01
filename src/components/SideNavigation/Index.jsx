@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { memo } from "react";
 import CollectionsNamesList from "./CollectionsNamesList";
 import Navigation from "./Navigation";
 import classes from "./Index.module.css";
@@ -9,7 +10,7 @@ import classes from "./Index.module.css";
  * @returns JSX code with sidebar component.
  */
 
-function Sidebar() {
+const Sidebar = memo(function Sidebar() {
   const isCollection =
     useSelector((state) => state.collections.collections).length > 0;
   return (
@@ -18,6 +19,6 @@ function Sidebar() {
       {isCollection && <CollectionsNamesList />}
     </aside>
   );
-}
+});
 
 export default Sidebar;
