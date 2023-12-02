@@ -70,9 +70,9 @@ The project uses light and subtle graphic means, the layout and style of which a
 
 ### Selected screens
 
-| Homepage (desktop)                                                                      | Homepage (mobile)                                                                     |
-| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| ![Application homepage view in desktop layout.](public/screens/desktop-search-view.png) | ![Application homepage view in mobile layout.](public/screens/mobile-search-view.png) |
+| Search page (desktop)                                                                      | Search page (mobile)                                                                     |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| ![Application search page view in desktop layout.](public/screens/desktop-search-view.png) | ![Application search page view in mobile layout.](public/screens/mobile-search-view.png) |
 
 | Artwork Page                                                       | Collections list                                                                | 404 error page                                                   |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
